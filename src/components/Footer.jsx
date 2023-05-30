@@ -2,76 +2,88 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <div className="absolute bg-red-400 bottom-0 w-screen">
-      <article className="flex flex-col justify-center items-center">
-        <h3>Follow us:</h3>
-        <ul className="flex flex-col">
-          <li className="flex flex-row justify-between items-center ">
-            <p>Facebook</p>
-            <Link className="ml-10" to="#">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-login w-8"
-                width="44"
-                height="44"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="#2c3e50"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                <path d="M20 12h-13l3 -3m0 6l-3 -3" />
-              </svg>
+    <footer className="bg-white w-full absolute bottom-0">
+      <div className="px-4 py-12 mx-auto overflow-hidden max-w-7xl sm:px-6 lg:px-8">
+        <nav
+          className="flex flex-wrap justify-center -mx-5 -my-2"
+          aria-label="Footer"
+        >
+          <div className="px-5 py-2">
+            <a href="#" className="text-sm text-gray-500 hover:text-blue-600">
+              Follow us
+            </a>
+          </div>
+        </nav>
+        <div className="flex justify-center mt-4 space-x-6">
+          <span className="inline-flex justify-center w-full gap-3 m-auto md:justify-start md:w-auto">
+            <Link
+              to="https://github.com/dafegosa/books"
+              target="_blank"
+              className="w-6 h-6 transition fill-black hover:text-blue-500"
+            >
+              <span className="sr-only">github</span>
+              <ion-icon
+                className="w-5 h-5 md hydrated"
+                name="logo-github"
+                role="img"
+                aria-label="logo github"
+              ></ion-icon>
             </Link>
-          </li>
-          <li className="flex flex-row justify-between items-center">
-            <p>Twitter</p>
-            <Link className="ml-10" to="#">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-login w-8"
-                width="44"
-                height="44"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="#2c3e50"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                <path d="M20 12h-13l3 -3m0 6l-3 -3" />
-              </svg>
+            <Link
+              to="https://twitter.com/home"
+              target="_blank"
+              className="w-6 h-6 transition fill-black hover:text-blue-500"
+            >
+              <span className="sr-only">twitter</span>
+              <ion-icon
+                className="w-5 h-5 md hydrated"
+                name="logo-twitter"
+                role="img"
+                aria-label="logo twitter"
+              ></ion-icon>
             </Link>
-          </li>
-          <li className="flex flex-row justify-between items-center">
-            <p>Instagram</p>
-            <Link className="ml-10" to="#">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-login w-8"
-                width="44"
-                height="44"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="#2c3e50"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                <path d="M20 12h-13l3 -3m0 6l-3 -3" />
-              </svg>
+            <Link
+              to="https://www.instagram.com/"
+              target="_blank"
+              className="w-6 h-6 transition fill-black hover:text-blue-500"
+            >
+              <span className="sr-only">Instagram</span>
+              <ion-icon
+                className="w-5 h-5 md hydrated"
+                name="logo-instagram"
+                role="img"
+                aria-label="logo instagram"
+              ></ion-icon>
             </Link>
-          </li>
-        </ul>
-      </article>
-    </div>
+            <Link
+              to="linkedin.com"
+              target="_blank"
+              className="w-6 h-6 transition fill-black hover:text-blue-500"
+            >
+              <span className="sr-only">Linkedin</span>
+              <ion-icon
+                className="w-5 h-5 md hydrated"
+                name="logo-linkedin"
+                role="img"
+                aria-label="logo linkedin"
+              ></ion-icon>
+            </Link>
+          </span>
+        </div>
+        <p className="mt-3 text-center flex flex-col">
+          <span className="mx-auto mt-1 text-sm text-gray-500">
+            <Link
+              to="https://josalvarezme.atlassian.net/jira/software/projects/TE/boards/1/backlog?atlOrigin=eyJwIjoiYWRtaW4iLCJpIjoiNDE5ZjVhMWQ1YzNmNDEwYzkzZDZiOWU2YzE0ZDAxYzIifQ%3D%3D&cloudId=bf4b9d7b-525f-4737-b665-abf90254ddf9"
+              className="mx-2 text-blue-500 hover:text-gray-500"
+              rel="noopener noreferrer"
+            >
+              @Reading wishlist | Team 1
+            </Link>
+            Copyright©2023
+          </span>
+        </p>
+      </div>
+    </footer>
   );
 };
 export default Footer;
