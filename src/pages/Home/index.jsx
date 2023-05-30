@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import SignUpForm from '../../components/forms/signUpForm';
+import Footer from '../../components/Footer';
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <section className="w-6/12 mx-auto">
         <SignUpForm />
       </section>
+      <Footer />
     </>
   );
 };
