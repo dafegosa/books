@@ -52,7 +52,7 @@ const Footer = () => {
                     className="w-5 h-5 md hydrated"
                     name={`logo-${net.name}`}
                     role="img"
-                    aria-label="logo github"
+                    aria-label={`logo ${net.name}`}
                   ></ion-icon>
                 </Link>
               );
