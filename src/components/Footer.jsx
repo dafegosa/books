@@ -1,73 +1,62 @@
 import { Link } from 'react-router-dom';
 
+const SOCIAL_NETWORKS = [
+  {
+    name: 'github',
+    Label: 'Github',
+    url: 'https://github.com/dafegosa/books',
+  },
+  {
+    name: 'twitter',
+    Label: 'Twitter',
+    url: 'https://twitter.com/home',
+  },
+  {
+    name: 'instagram',
+    Label: 'Instagram',
+    url: 'https://www.instagram.com/',
+  },
+  {
+    name: 'linkedin',
+    Label: 'LinkedIn',
+    url: '',
+  },
+];
+
 const Footer = () => {
   return (
     <footer className="bg-white w-full absolute bottom-0">
-      <div className="px-4 py-12 mx-auto overflow-hidden max-w-7xl sm:px-6 lg:px-8">
+      <div className="px-4 py-4 mx-auto overflow-hidden max-w-7xl sm:px-6 lg:px-8">
         <nav
           className="flex flex-wrap justify-center -mx-5 -my-2"
           aria-label="Footer"
         >
           <div className="px-5 py-2">
-            <a href="#" className="text-sm text-gray-500 hover:text-blue-600">
+            <p className="text-sm text-gray-500 hover:text-blue-600">
               Follow us
-            </a>
+            </p>
           </div>
         </nav>
         <div className="flex justify-center mt-4 space-x-6">
           <span className="inline-flex justify-center w-full gap-3 m-auto md:justify-start md:w-auto">
-            <Link
-              to="https://github.com/dafegosa/books"
-              target="_blank"
-              className="w-6 h-6 transition fill-black hover:text-blue-500"
-            >
-              <span className="sr-only">github</span>
-              <ion-icon
-                className="w-5 h-5 md hydrated"
-                name="logo-github"
-                role="img"
-                aria-label="logo github"
-              ></ion-icon>
-            </Link>
-            <Link
-              to="https://twitter.com/home"
-              target="_blank"
-              className="w-6 h-6 transition fill-black hover:text-blue-500"
-            >
-              <span className="sr-only">twitter</span>
-              <ion-icon
-                className="w-5 h-5 md hydrated"
-                name="logo-twitter"
-                role="img"
-                aria-label="logo twitter"
-              ></ion-icon>
-            </Link>
-            <Link
-              to="https://www.instagram.com/"
-              target="_blank"
-              className="w-6 h-6 transition fill-black hover:text-blue-500"
-            >
-              <span className="sr-only">Instagram</span>
-              <ion-icon
-                className="w-5 h-5 md hydrated"
-                name="logo-instagram"
-                role="img"
-                aria-label="logo instagram"
-              ></ion-icon>
-            </Link>
-            <Link
-              to="linkedin.com"
-              target="_blank"
-              className="w-6 h-6 transition fill-black hover:text-blue-500"
-            >
-              <span className="sr-only">Linkedin</span>
-              <ion-icon
-                className="w-5 h-5 md hydrated"
-                name="logo-linkedin"
-                role="img"
-                aria-label="logo linkedin"
-              ></ion-icon>
-            </Link>
+            {SOCIAL_NETWORKS.map((net) => {
+              return (
+                <Link
+                  key={net.name}
+                  to={net.url}
+                  target="_blank"
+                  className="w-6 h-6 transition fill-black hover:text-blue-500"
+                >
+                  <span className="sr-only">github</span>
+                  <ion-icon
+                    className="w-5 h-5 md hydrated"
+                    name={`logo-${net.name}`}
+                    role="img"
+                    aria-label="logo github"
+                  ></ion-icon>
+                </Link>
+              );
+            })}
           </span>
         </div>
         <p className="mt-3 text-center flex flex-col">
