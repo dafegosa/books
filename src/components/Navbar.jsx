@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const [desktopMenu, setDesktopMenu] = useState(false);
+
   return (
     <div className="w-full mx-auto bg-white border-b 2xl:max-w-7xl">
       <div className="relative flex flex-col w-full p-5 mx-auto bg-white md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
@@ -9,10 +12,11 @@ const Navbar = () => {
             className="text-lg tracking-tight text-black uppercase focus:outline-none focus:ring lg:text-2xl"
             to="/"
           >
-            <span className="lg:text-lg uppecase focus:ring-0">
+            <span className="lg:text-lg uppercase focus:ring-0">
               <ion-icon name="book"></ion-icon>
             </span>
           </Link>
+          {/* Button mobile */}
           <button className="inline-flex items-center justify-center p-2 text-gray-400 hover:text-black focus:outline-none focus:text-black md:hidden">
             <svg
               className="w-6 h-6"
@@ -62,6 +66,7 @@ const Navbar = () => {
               <div>
                 <button
                   type="button"
+                  onClick={() => setDesktopMenu(!desktopMenu)}
                   className="flex bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   id="user-menu-button"
                 >
@@ -75,7 +80,9 @@ const Navbar = () => {
               </div>
 
               <div
-                className="absolute hidden right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                className={`absolute ${
+                  desktopMenu ? 'hidden' : 'block'
+                } right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
                 role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="user-menu-button"
@@ -110,14 +117,6 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
-            <button className="inline-flex items-center justify-center p-4 text-sm font-semibold text-white bg-black rounded-full group focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 hover:bg-gray-700 active:bg-gray-800 active:text-white focus-visible:outline-blue-900">
-              <ion-icon
-                name="add-outline"
-                role="img"
-                className="md hydrated"
-                aria-label="add outline"
-              ></ion-icon>
-            </button>
           </div>
         </nav>
       </div>
