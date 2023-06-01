@@ -47,7 +47,7 @@ const Footer = () => {
                   target="_blank"
                   className="w-6 h-6 transition fill-black hover:text-blue-500"
                 >
-                  <span className="sr-only">github</span>
+                  <span className="sr-only">{net.Label}</span>
                   <ion-icon
                     className="w-5 h-5 md hydrated"
                     name={`logo-${net.name}`}
