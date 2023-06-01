@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [desktopMenu, setDesktopMenu] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   return (
     <div className="w-full mx-auto bg-white border-b 2xl:max-w-7xl">
@@ -17,7 +18,10 @@ const Navbar = () => {
             </span>
           </Link>
           {/* Button mobile */}
-          <button className="inline-flex items-center justify-center p-2 text-gray-400 hover:text-black focus:outline-none focus:text-black md:hidden">
+          <button
+            onClick={() => setMobileMenu(!mobileMenu)}
+            className="inline-flex items-center justify-center p-2 text-gray-400 hover:text-black focus:outline-none focus:text-black md:hidden"
+          >
             <svg
               className="w-6 h-6"
               stroke="currentColor"
@@ -40,7 +44,66 @@ const Navbar = () => {
               ></path>
             </svg>
           </button>
+
+          {/* Mobile Menu */}
+          <div
+            className={`absolute ${
+              mobileMenu ? 'flex' : 'hidden'
+            } flex-col justify-end right-0 z-10 w-48 py-1 mt-[19rem] origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:hidden`}
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="user-menu-button"
+            tabIndex="-1"
+          >
+            <Link
+              className="block px-4 py-2 text-sm text-gray-500 text-center"
+              to="#"
+            >
+              My Wishlist
+            </Link>
+            <Link
+              className="block px-4 py-2 text-sm text-gray-500 text-center"
+              to="#"
+            >
+              Add books
+            </Link>
+            <Link
+              className="block px-4 py-2 text-sm text-gray-500 text-center"
+              to="#"
+            >
+              Contact us
+            </Link>
+            <Link
+              to="#"
+              className="block px-4 py-2 text-sm text-gray-500 text-center"
+              role="menuitem"
+              tabIndex="-1"
+              id="user-menu-item-0"
+            >
+              Your Profile
+            </Link>
+            <Link
+              to="#"
+              className="block px-4 py-2 text-sm text-gray-500 text-center"
+              role="menuitem"
+              tabIndex="-1"
+              id="user-menu-item-1"
+            >
+              Settings
+            </Link>
+            <Link
+              to="#"
+              className="block px-4 py-2 text-sm text-gray-500 text-center"
+              role="menuitem"
+              tabIndex="-1"
+              id="user-menu-item-2"
+            >
+              Sign out
+            </Link>
+          </div>
         </div>
+
+        {/* Desktop Navbar */}
         <nav className="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row">
           <Link
             className="px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600 lg:ml-auto"
@@ -81,7 +144,7 @@ const Navbar = () => {
 
               <div
                 className={`absolute ${
-                  desktopMenu ? 'hidden' : 'block'
+                  desktopMenu ? 'block' : 'hidden'
                 } right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
                 role="menu"
                 aria-orientation="vertical"
