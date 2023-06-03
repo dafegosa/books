@@ -27,7 +27,7 @@ const SignIn = () => {
                 <input
                   className="block w-full px-6 py-3 text-black bg-white border border-gray-200 appearance-none rounded-xl placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                   placeholder="email@example.com"
-                  autocomplete="off"
+                  autoComplete="off"
                   type="email"
                 />
               </div>
