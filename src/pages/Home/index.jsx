@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import SignUpForm from '../../components/forms/signUpForm';
+
 import Footer from '../../components/Footer';
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
         </ul>
       </nav>
       <section className="w-6/12 mx-auto">
-        <SignUpForm />
+        <h2>Wishlist books</h2>
       </section>
       <Footer />
     </>
