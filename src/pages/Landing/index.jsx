@@ -6,7 +6,6 @@ import Navbar from '../../components/Navbar';
 const Landing = () => {
   return (
     <div className="flex flex-col min-h-screen w-full bg-gray-200">
-      <Navbar />
       <div className="flex h-auto bg-white">
         <div className="flex flex-col justify-center h-screen flex-1 px-8 py-8 md:px-12 lg:flex-none lg:px-24">
           <div className="w-full mx-auto lg:max-w-6xl">

@@ -5,7 +5,6 @@ import SignUpForm from '../../components/forms/signUpForm';
 const SignUp = () => {
   return (
     <div className="flex flex-col">
-      <Navbar />
       <div className="flex flex-col sm:m-16 md:m-0">
         <div className="w-full max-w-md mx-auto md:mt-12">
           <div className="flex flex-col">

@@ -7,12 +7,14 @@ import Landing from './pages/Landing';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import NotFound from './pages/NotFound';
+import { Menu } from './Menu';
 
 function App() {
   const [state, setState] = useState(true);
   return (
     <>
       <BrowserRouter>
+        <Menu />
         <Routes>
           <Route element={<ProtectedRoute canActivate={state} />}>
             <Route path="/" element={<Home />} />

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   const [desktopMenu, setDesktopMenu] = useState(false);
@@ -73,74 +73,50 @@ const Navbar = () => {
             aria-labelledby="user-menu-button"
             tabIndex="-1"
           >
-            <Link
-              className="block px-4 py-2 text-sm text-gray-500 text-center"
-              to="#"
-            >
-              My Wishlist
-            </Link>
-            <Link
-              className="block px-4 py-2 text-sm text-gray-500 text-center"
-              to="#"
-            >
-              Add books
-            </Link>
-            <Link
-              className="block px-4 py-2 text-sm text-gray-500 text-center"
-              to="#"
-            >
-              Contact us
-            </Link>
-            <Link
-              to="#"
-              className="block px-4 py-2 text-sm text-gray-500 text-center"
-              role="menuitem"
-              tabIndex="-1"
-              id="user-menu-item-0"
-            >
-              Your Profile
-            </Link>
-            <Link
-              to="#"
-              className="block px-4 py-2 text-sm text-gray-500 text-center"
-              role="menuitem"
-              tabIndex="-1"
-              id="user-menu-item-1"
-            >
-              Settings
-            </Link>
-            <Link
-              to="#"
-              className="block px-4 py-2 text-sm text-gray-500 text-center"
-              role="menuitem"
-              tabIndex="-1"
-              id="user-menu-item-2"
-            >
-              Sign out
-            </Link>
+            {routes.map((route) => (
+              <NavLink
+                className="block px-4 py-2 text-sm text-gray-500 text-center"
+                to={route.to}
+                key={route.id}
+                style={({ isActive }) => ({
+                  color: isActive ? 'underline' : '',
+                })}
+              >
+                {route.text}
+              </NavLink>
+            ))}
+
+            {routesProfile.map((route) => (
+              <NavLink
+                className="block px-4 py-2 text-sm text-gray-500 text-center"
+                role="menuitem"
+                tabIndex="-1"
+                to={route.to}
+                key={route.id}
+                style={({ isActive }) => ({
+                  color: isActive ? 'underline' : '',
+                })}
+              >
+                {route.text}
+              </NavLink>
+            ))}
           </div>
         </div>
 
         {/* Desktop Navbar */}
         <nav className="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row">
-          <Link
-            className="px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600 lg:ml-auto"
-            to="#"
-          >
-            My Wishlist
-          </Link>
-          <Link
-            className="px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600"
-            to="#"
-          >
-            Add books
-          </Link>
-          <Link
-            className="px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600"
-            to="#"
-          >
-            Contact us
-          </Link>
+          {routes.map((route) => (
+            <NavLink
+              className="px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600"
+              to={route.to}
+              key={route.id}
+              style={({ isActive }) => ({
+                color: isActive ? 'underline' : '',
+              })}
+            >
+              {route.text}
+            </NavLink>
+          ))}
 
           <div className="inline-flex items-center gap-2 list-none lg:ml-auto">
             <div className="relative flex-shrink-0 ml-5">
@@ -169,33 +145,20 @@ const Navbar = () => {
                 aria-labelledby="user-menu-button"
                 tabIndex="-1"
               >
-                <Link
-                  to="#"
-                  className="block px-4 py-2 text-sm text-gray-500"
-                  role="menuitem"
-                  tabIndex="-1"
-                  id="user-menu-item-0"
-                >
-                  Your Profile
-                </Link>
-                <Link
-                  to="#"
-                  className="block px-4 py-2 text-sm text-gray-500"
-                  role="menuitem"
-                  tabIndex="-1"
-                  id="user-menu-item-1"
-                >
-                  Settings
-                </Link>
-                <Link
-                  to="#"
-                  className="block px-4 py-2 text-sm text-gray-500"
-                  role="menuitem"
-                  tabIndex="-1"
-                  id="user-menu-item-2"
-                >
-                  Sign out
-                </Link>
+                {routesProfile.map((route) => (
+                  <NavLink
+                    className="block px-4 py-2 text-sm text-gray-500"
+                    role="menuitem"
+                    tabIndex="-1"
+                    to={route.to}
+                    key={route.id}
+                    style={({ isActive }) => ({
+                      color: isActive ? 'underline' : '',
+                    })}
+                  >
+                    {route.text}
+                  </NavLink>
+                ))}{' '}
               </div>
             </div>
           </div>
@@ -204,4 +167,38 @@ const Navbar = () => {
     </div>
   );
 };
+
+const routes = [];
+routes.push({
+  id: 1,
+  to: '/',
+  text: 'Wishlist',
+});
+routes.push({
+  id: 2,
+  to: '/add-books',
+  text: 'Add Books',
+});
+routes.push({
+  id: 3,
+  to: '/contact',
+  text: 'Contact us',
+});
+
+const routesProfile = [];
+routesProfile.push({
+  id: 1,
+  to: '/profile',
+  text: 'Profile',
+});
+routesProfile.push({
+  id: 2,
+  to: '/settings',
+  text: 'Settings',
+});
+routesProfile.push({
+  id: 3,
+  to: '/landing',
+  text: 'Sign out',
+});
 export default Navbar;

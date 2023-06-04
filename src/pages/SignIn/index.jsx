@@ -7,7 +7,6 @@ import SignInForm from '../../components/forms/signInForm';
 const SignIn = () => {
   return (
     <div className="flex flex-col">
-      <Navbar />
       <div className="flex flex-col sm:m-16 md:m-0">
         <div className="w-full max-w-md mx-auto md:mt-28">
           <div className="flex flex-col">
