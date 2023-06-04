@@ -107,12 +107,13 @@ const Navbar = () => {
         <nav className="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row">
           {routes.map((route) => (
             <NavLink
-              className="px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600"
               to={route.to}
               key={route.id}
-              style={({ isActive }) => ({
-                color: isActive ? 'underline' : '',
-              })}
+              className={({ isActive }) =>
+                isActive
+                  ? 'underline px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600'
+                  : 'text-blue-500 px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600'
+              }
             >
               {route.text}
             </NavLink>
