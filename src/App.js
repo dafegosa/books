@@ -6,7 +6,7 @@ import Account from './pages/Account';
 import NotFound from './pages/NotFound';
 
 function App() {
-  const [state, setState] = useState(true);
+  const [state] = useState(true);
   return (
     <>
       <BrowserRouter>
