@@ -14,8 +14,6 @@ function App() {
           <Route element={<ProtectedRoute canActivate={state} />}>
             <Route path="/" element={<Landing />} />
           </Route>
-
-          {/* <Route path="landing" element={<Landing />} /> */}
           <Route path="account" element={<Account />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
