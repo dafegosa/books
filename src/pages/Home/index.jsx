@@ -12,7 +12,7 @@ const Home = () => {
             <Link to="#">other options</Link>
           </li>
           <li className="m-4">
-            <Link to="landing">Logout</Link>
+            <Link to="/">Logout</Link>
           </li>
         </ul>
       </nav>
