@@ -1,8 +1,8 @@
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import SignInForm from '../../components/forms/SignInForm';
-import SignUpForm from '../../components/forms/signUpForm';
 import { useState } from 'react';
+
+import Footer from '../../components/Footer';
+import SignInForm from '../../components/forms/signInForm';
+import SignUpForm from '../../components/forms/signUpForm';
 
 const Account = () => {
   const [hasAccount, setHasAccount] = useState(true);
