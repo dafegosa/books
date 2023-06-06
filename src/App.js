@@ -1,30 +1,31 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import ProtectedRoute from './utils/ProtectedRoute';
-import Home from './pages/Home';
 import Landing from './pages/Landing';
-import SignUp from './pages/SignUp';
-import SignIn from './pages/SignIn';
+import Account from './pages/Account';
 import NotFound from './pages/NotFound';
+import { GlobalContextProvider } from './store/globalContext.jsx';
+import MyStates from './pages/testig-states.jsx';
 import { Menu } from './Menu';
+import Home from './pages/Home';
 
 function App() {
-  const [state, setState] = useState(true);
+  const [state] = useState(true);
   return (
     <>
       <BrowserRouter>
         <Menu />
-        <Routes>
-          <Route element={<ProtectedRoute canActivate={state} />}>
-            <Route path="/" element={<Home />} />
-          </Route>
-
-          <Route path="landing" element={<Landing />} />
-          <Route path="sign-up" element={<SignUp />} />
-          <Route path="sign-in" element={<SignIn />} />
-          <Route path="/*" element={<NotFound />} />
-        </Routes>
+        <GlobalContextProvider>
+          <Routes>
+            <Route element={<ProtectedRoute canActivate={state} />}>
+              <Route path="/" element={<Home />} />
+            </Route>
+            <Route path="account" element={<Account />} />
+            <Route path="landing" element={<Landing />} />
+            <Route path="/*" element={<NotFound />} />
+            <Route path="/test-states" element={<MyStates />} />
+          </Routes>
+        </GlobalContextProvider>
       </BrowserRouter>
     </>
   );

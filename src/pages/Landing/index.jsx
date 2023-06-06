@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import Footer from '../../components/Footer';
-import Navbar from '../../components/Navbar';
-
+import landingImage from '../../assets/landingImage.jpeg';
 const Landing = () => {
   return (
     <div className="flex flex-col min-h-screen w-full bg-gray-200">
@@ -22,7 +21,7 @@ const Landing = () => {
               </div>
               <div className="flex flex-col items-center justify-center max-w-lg gap-3 mx-auto mt-10 lg:flex-row lg:justify-start">
                 <Link
-                  to="/sign-in"
+                  to="/account"
                   className="items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none lg:w-auto focus-visible:outline-black text-sm focus-visible:ring-black"
                 >
                   Get started
@@ -42,7 +41,7 @@ const Landing = () => {
           <div>
             <img
               className="absolute inset-0 object-cover w-full h-full bg-gray-200 lg:border-l"
-              src="https://images.pexels.com/photos/2846814/pexels-photo-2846814.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src={landingImage}
               alt=""
             />
           </div>
