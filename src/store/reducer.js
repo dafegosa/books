@@ -7,7 +7,11 @@ export const reducer = (state, action) => {
     case actions.DECREMENT:
       return { ...state, count: state.count - 1 };
     case actions.SET_BOOKS:
-      return { ...state, books: action.payload };
+      let titles = [];
+      action.payload.items.map((book) => {
+        titles.push(book.volumeInfo.title);
+      });
+      return { ...state, books: titles };
     default:
       return state;
   }

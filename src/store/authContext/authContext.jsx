@@ -10,7 +10,7 @@ function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const login = ({ email, password }) => {
-    if (email === 'test@gmail.com' && password === 'password') {
+    if (email === 'test@gmail.com' && password === '123') {
       setUser({ email, password });
       setIsAuthenticated(true);
       navigate('/');

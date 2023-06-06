@@ -26,13 +26,6 @@ const Landing = () => {
                 >
                   Get started
                 </Link>
-                <Link
-                  to="/"
-                  className="inline-flex items-center justify-center text-sm font-semibold text-black duration-200 hover:text-blue-500 focus:outline-none focus-visible:outline-gray-600"
-                >
-                  Learn more
-                  <span aria-hidden="true"> → </span>
-                </Link>
               </div>
             </div>
           </div>
