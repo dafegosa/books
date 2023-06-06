@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Footer from '../../components/Footer';
 import SignUpForm from '../../components/forms/signUpForm';
-import SignInForm from '../../components/forms/signInForm';
+import SignInForm from '../../components/forms/formSignIn';
 
 const Account = () => {
   const [hasAccount, setHasAccount] = useState(true);
