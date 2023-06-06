@@ -7,14 +7,14 @@ const MyStates = () => {
 
   return (
     <div>
-      <h2>Contador</h2>
+      <h2>Counter</h2>
       <p>Count: {state.count}</p>
       <p>Count: {JSON.stringify(state.books)}</p>
-      <button onClick={() => increment(dispatch)}>Incrementar</button>
+      <button onClick={() => increment(dispatch)}>Increment</button>
       <br />
-      <button onClick={() => decrement(dispatch)}>Decrementar</button>
+      <button onClick={() => decrement(dispatch)}>Decrement</button>
       <br />
-      <button onClick={() => fetchBooks(dispatch)}>Obtener libros</button>
+      <button onClick={() => fetchBooks(dispatch)}>Get books</button>
     </div>
   );
 };
