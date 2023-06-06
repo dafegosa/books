@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import TextInput from '../inputFields/TextInput';
 
+import { useAuth } from '../../Context/authContext';
+
 const SignInForm = () => {
+  const { login } = useAuth();
   return (
     <Formik
       initialValues={{
@@ -16,11 +19,8 @@ const SignInForm = () => {
           .required('Required'),
         password: Yup.string().required('Required'),
       })}
-      onSubmit={async (values, { setSubmitting }) => {
-        await new Promise((r) => setTimeout(r, 500));
-        alert(JSON.stringify(values, null, 2));
-        setSubmitting(false);
-        console.log(values);
+      onSubmit={async (values) => {
+        login(values);
       }}
     >
       {({

@@ -1,9 +1,16 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useAuth } from '../Context/authContext';
 
 const Navbar = () => {
+  const { logout, isAuthenticated } = useAuth();
+
   const [desktopMenu, setDesktopMenu] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <div className="w-full mx-auto bg-white border-b 2xl:max-w-7xl">
@@ -11,7 +18,7 @@ const Navbar = () => {
         <div className="flex flex-row items-center justify-between lg:justify-start">
           <Link
             className="text-lg tracking-tight text-black uppercase focus:outline-none focus:ring lg:text-2xl"
-            to="/"
+            to={isAuthenticated ? '/' : 'landing'}
           >
             <span className="lg:text-lg uppercase focus:ring-0">
               <svg
@@ -96,6 +103,7 @@ const Navbar = () => {
                 style={({ isActive }) => ({
                   color: isActive ? 'underline' : '',
                 })}
+                onClick={route.text === 'Sign out' ? handleLogout : null}
               >
                 {route.text}
               </NavLink>
@@ -156,6 +164,7 @@ const Navbar = () => {
                     style={({ isActive }) => ({
                       color: isActive ? 'underline' : '',
                     })}
+                    onClick={route.text === 'Sign out' ? handleLogout : null}
                   >
                     {route.text}
                   </NavLink>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import ProtectedRoute from './utils/ProtectedRoute';
@@ -8,23 +8,32 @@ import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import NotFound from './pages/NotFound';
 import { Menu } from './Menu';
+import { AuthProvider } from './Context/authContext';
 
 function App() {
-  const [state, setState] = useState(true);
   return (
     <>
       <BrowserRouter>
-        <Menu />
-        <Routes>
-          <Route element={<ProtectedRoute canActivate={state} />}>
-            <Route path="/" element={<Home />} />
-          </Route>
+        <AuthProvider>
+          <Menu />
+          <Routes>
+            <Route path="/" element={<ProtectedRoute />}>
+              <Route index element={<Home />} />
+            </Route>
 
-          <Route path="landing" element={<Landing />} />
-          <Route path="sign-up" element={<SignUp />} />
-          <Route path="sign-in" element={<SignIn />} />
-          <Route path="/*" element={<NotFound />} />
-        </Routes>
+            {/* <Route
+              index
+              element={<Home />}
+              caseSensitive
+              children={<ProtectedHome />}
+            /> */}
+
+            <Route path="landing" element={<Landing />} />
+            <Route path="sign-up" element={<SignUp />} />
+            <Route path="sign-in" element={<SignIn />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </>
   );
