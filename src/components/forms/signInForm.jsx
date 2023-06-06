@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
+import { Form, Formik } from 'formik';
 import TextInput from '../inputFields/TextInput';
-
-import { useAuth } from '../../Context/authContext';
+import * as Yup from 'yup';
 
 const SignInForm = () => {
-  const { login } = useAuth();
   return (
     <Formik
       initialValues={{
