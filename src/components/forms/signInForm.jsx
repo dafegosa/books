@@ -2,10 +2,7 @@ import { Form, Formik } from 'formik';
 import TextInput from '../inputFields/TextInput';
 import * as Yup from 'yup';
 
-import { useAuth } from '../../store/authContext/authContext';
-
 const SignInForm = () => {
-  const { login } = useAuth();
   return (
     <Formik
       initialValues={{
@@ -22,7 +19,6 @@ const SignInForm = () => {
       onSubmit={async (values, { setSubmitting }) => {
         await new Promise((r) => setTimeout(r, 500));
         setSubmitting(false);
-        login(values);
       }}
     >
       <Form className="mt-4 space-y-6">
