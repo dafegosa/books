@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { useAuth } from '../Context/authContext';
+import { useAuth } from '../store/authContext/authContext';
 
 const Navbar = () => {
   const { logout, isAuthenticated } = useAuth();
@@ -18,7 +18,7 @@ const Navbar = () => {
         <div className="flex flex-row items-center justify-between lg:justify-start">
           <Link
             className="text-lg tracking-tight text-black uppercase focus:outline-none focus:ring lg:text-2xl"
-            to={isAuthenticated ? '/' : 'landing'}
+            to={isAuthenticated ? 'home' : '/'}
           >
             <span className="lg:text-lg uppercase focus:ring-0">
               <svg
@@ -181,7 +181,7 @@ const Navbar = () => {
 const routes = [];
 routes.push({
   id: 1,
-  to: '/',
+  to: 'home',
   text: 'Wishlist',
 });
 routes.push({
@@ -191,8 +191,8 @@ routes.push({
 });
 routes.push({
   id: 3,
-  to: '/contact',
-  text: 'Contact us',
+  to: '/about',
+  text: 'About us',
 });
 
 const routesProfile = [];
@@ -208,7 +208,7 @@ routesProfile.push({
 });
 routesProfile.push({
   id: 3,
-  to: '/landing',
+  to: '/',
   text: 'Sign out',
 });
 export default Navbar;

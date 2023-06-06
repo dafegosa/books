@@ -8,7 +8,14 @@ const ProtectedRoute = (redirectPath = 'landing') => {
   useEffect(() => {}, [isAuthenticated]);
 
   if (!isAuthenticated) {
-    return <Navigate to={redirectPath} replace />;
+    return (
+      <div>
+        <h2 className="w-full h-screen flex justify-center items-center text-center text-4xl">
+          Primero debes hacer login.
+        </h2>
+        <Navigate to={redirectPath} replace />
+      </div>
+    );
   }
   return <Outlet />;
 };

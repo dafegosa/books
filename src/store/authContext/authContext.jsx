@@ -13,13 +13,13 @@ function AuthProvider({ children }) {
     if (email === 'test@gmail.com' && password === '123') {
       setUser({ email, password });
       setIsAuthenticated(true);
-      navigate('/');
+      navigate('home');
     }
   };
 
   const logout = () => {
     setIsAuthenticated(false);
-    navigate('landing', replace);
+    navigate('/', replace);
   };
 
   const value = { user, isAuthenticated, login, logout };
