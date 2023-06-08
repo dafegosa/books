@@ -22,11 +22,11 @@ function App() {
           <Menu />
           <GlobalContextProvider>
             <Routes>
-              <Route element={<ProtectedRoute canActivate={state} />}>
-                <Route path="/home" element={<Home />} />
-                <Route path="/add-books" element={<MyStates />} />
-                <Route path="/about" element={<About />} />
-              </Route>
+              {/* <Route element={<ProtectedRoute canActivate={state} />}> */}
+              <Route path="/home" element={<Home />} />
+              <Route path="/add-books" element={<MyStates />} />
+              <Route path="/about" element={<About />} />
+              {/* </Route> */}
               <Route path="/" element={<Landing />} />
               <Route path="account" element={<Account />} />
               <Route path="/*" element={<NotFound />} />
