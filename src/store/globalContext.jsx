@@ -10,11 +10,20 @@ export const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   const [openModal, setOpenModal] = useState(false);
+  const [modalType, setModalType] = useState('add');
 
   return (
     <GlobalContext.Provider
-      value={{ state, dispatch, openModal, setOpenModal }}
+      value={{
+        state,
+        dispatch,
+        openModal,
+        setOpenModal,
+        modalType,
+        setModalType,
+      }}
     >
       {children}
     </GlobalContext.Provider>

@@ -10,11 +10,12 @@ const Home = () => {
 
   return (
     <>
-      <section className="w-6/12 mx-auto bg-slate-400">
-        <h2 className="text-center text-lg md:text-4xl">Wishlist books</h2>
+      <section className="w-6/12 mx-auto">
+        <h2 className="text-2xl font-medium tracking-tight text-black sm:text-4xl text-center mb-8">
+          Wishlist books
+        </h2>
         <AppUI />
       </section>
-      <Footer />
     </>
   );
 };
