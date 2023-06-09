@@ -1,4 +1,4 @@
-import { useContext, useId, useState } from 'react';
+import { useContext, useId } from 'react';
 
 import { GlobalContext } from '../../store/globalContext';
 
@@ -72,15 +72,7 @@ const books = [
 
 const AppUI = () => {
   const id = useId();
-  const {
-    state,
-    dispatch,
-    setTypeModal,
-    modalType,
-    setModalType,
-    openModal,
-    setOpenModal,
-  } = useContext(GlobalContext);
+  const { modalType, openModal, setOpenModal } = useContext(GlobalContext);
 
   return (
     <>
