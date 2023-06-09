@@ -14,7 +14,7 @@ import NotFound from './pages/NotFound';
 import MyStates from './pages/testig-states.jsx';
 
 function App() {
-  const [state] = useState(true);
+  // const [state] = useState(true);
   return (
     <>
       <BrowserRouter>

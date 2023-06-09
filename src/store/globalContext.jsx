@@ -6,6 +6,11 @@ const initialState = {
   books: [],
 };
 
+/**
+ * @todo Move local states (openModal and modalType) to the global store.
+ * @todo Move logic of setOpenModal and setModalType to the reducer.
+ */
+
 export const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
