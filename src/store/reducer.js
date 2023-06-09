@@ -8,7 +8,7 @@ export const reducer = (state, action) => {
       return { ...state, count: state.count - 1 };
     case actions.SET_BOOKS:
       let titles = [];
-      action.payload.items.map((book) => {
+      action.payload.items.forEach((book) => {
         titles.push(book.volumeInfo.title);
       });
       return { ...state, books: titles };

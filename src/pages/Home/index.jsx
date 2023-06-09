@@ -1,13 +1,6 @@
-import { useContext } from 'react';
-
-import { GlobalContext } from '../../store/globalContext';
-
-import Footer from '../../components/Footer';
 import AppUI from './AppUI';
 
 const Home = () => {
-  const { state, dispatch } = useContext(GlobalContext);
-
   return (
     <>
       <section className="w-6/12 mx-auto">

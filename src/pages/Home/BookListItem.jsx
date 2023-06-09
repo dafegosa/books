@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import ButtonEditBook from '../../components/buttons/ButtonEditBook';
 
 const BookListItem = ({ book, setOpenModal }) => {
