@@ -3,29 +3,29 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import TextInput from '../inputFields/TextInput';
 
+import { useAuth } from '../../store/authContext/authContext';
+
 const SignUpForm = () => {
+  const { signup } = useAuth();
   return (
     <Formik
       initialValues={{
-        full_name: '',
         email: '',
         name: '',
         password: '',
-        passwordConfirm: '',
+        password_confirmation: '',
       }}
       validationSchema={Yup.object({
-        full_name: Yup.string().required('Required'),
         email: Yup.string()
           .email('Invalid email addresss`')
           .required('Required'),
+        name: Yup.string().required('Required'),
         password: Yup.string().required('Required'),
-        passwordConfirm: Yup.string().required('Required'),
+        password_confirmation: Yup.string().required('Required'),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        await new Promise((r) => setTimeout(r, 500));
-        alert(JSON.stringify(values, null, 2));
         setSubmitting(false);
-        console.log(values);
+        signup(values);
       }}
     >
       <Form className="mt-4 space-y-6">
@@ -62,7 +62,7 @@ const SignUpForm = () => {
         <div className="col-span-full">
           <TextInput
             label="Password Confirmation"
-            name="passwordConfirm"
+            name="password_confirmation"
             type="password"
             placeholder="********"
             labelStyles="block mb-3 text-sm font-medium text-gray-600"
@@ -72,7 +72,7 @@ const SignUpForm = () => {
 
         <div className="col-span-full">
           <button
-            className="items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none focus-visible:outline-black text-sm focus-visible:ring-black"
+            className="items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full inline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none focus-visible:outline-black text-sm focus-visible:ring-black"
             type="submit"
           >
             Submit

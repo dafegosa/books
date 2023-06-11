@@ -1,6 +1,7 @@
 import { Form, Formik } from 'formik';
 import TextInput from '../inputFields/TextInput';
 import * as Yup from 'yup';
+
 import { useAuth } from '../../store/authContext/authContext';
 
 const SignInForm = () => {
@@ -10,7 +11,6 @@ const SignInForm = () => {
       initialValues={{
         email: '',
         password: '',
-        passwordConfirm: '',
       }}
       validationSchema={Yup.object({
         email: Yup.string()
@@ -19,7 +19,6 @@ const SignInForm = () => {
         password: Yup.string().required('Required'),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        await new Promise((r) => setTimeout(r, 500));
         setSubmitting(false);
         login(values);
       }}
