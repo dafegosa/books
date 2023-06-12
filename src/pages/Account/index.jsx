@@ -1,14 +1,13 @@
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import SignInForm from '../../components/forms/SignInForm';
-import SignUpForm from '../../components/forms/signUpForm';
 import { useState } from 'react';
+
+import Footer from '../../components/Footer';
+import SignUpForm from '../../components/forms/signUpForm';
+import SignInForm from '../../components/forms/formSignIn';
 
 const Account = () => {
   const [hasAccount, setHasAccount] = useState(true);
   return (
     <div className="flex flex-col">
-      <Navbar />
       <div className="flex flex-col sm:m-16 md:m-0">
         <div className="w-full max-w-md mx-auto md:mt-28">
           <div className="flex flex-col">

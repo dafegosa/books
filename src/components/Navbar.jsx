@@ -1,9 +1,16 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { useAuth } from '../store/authContext/authContext';
 
 const Navbar = () => {
+  const { logout, isAuthenticated } = useAuth();
+
   const [desktopMenu, setDesktopMenu] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <div className="w-full mx-auto bg-white border-b 2xl:max-w-7xl">
@@ -11,10 +18,28 @@ const Navbar = () => {
         <div className="flex flex-row items-center justify-between lg:justify-start">
           <Link
             className="text-lg tracking-tight text-black uppercase focus:outline-none focus:ring lg:text-2xl"
-            to="/"
+            to={isAuthenticated ? 'home' : '/'}
           >
             <span className="lg:text-lg uppercase focus:ring-0">
-              <ion-icon name="book"></ion-icon>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-book"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="#2c3e50"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                <path d="M3 6l0 13" />
+                <path d="M12 6l0 13" />
+                <path d="M21 6l0 13" />
+              </svg>
             </span>
           </Link>
           {/* Button mobile */}
@@ -55,74 +80,52 @@ const Navbar = () => {
             aria-labelledby="user-menu-button"
             tabIndex="-1"
           >
-            <Link
-              className="block px-4 py-2 text-sm text-gray-500 text-center"
-              to="#"
-            >
-              My Wishlist
-            </Link>
-            <Link
-              className="block px-4 py-2 text-sm text-gray-500 text-center"
-              to="#"
-            >
-              Add books
-            </Link>
-            <Link
-              className="block px-4 py-2 text-sm text-gray-500 text-center"
-              to="#"
-            >
-              Contact us
-            </Link>
-            <Link
-              to="#"
-              className="block px-4 py-2 text-sm text-gray-500 text-center"
-              role="menuitem"
-              tabIndex="-1"
-              id="user-menu-item-0"
-            >
-              Your Profile
-            </Link>
-            <Link
-              to="#"
-              className="block px-4 py-2 text-sm text-gray-500 text-center"
-              role="menuitem"
-              tabIndex="-1"
-              id="user-menu-item-1"
-            >
-              Settings
-            </Link>
-            <Link
-              to="#"
-              className="block px-4 py-2 text-sm text-gray-500 text-center"
-              role="menuitem"
-              tabIndex="-1"
-              id="user-menu-item-2"
-            >
-              Sign out
-            </Link>
+            {routes.map((route) => (
+              <NavLink
+                className="block px-4 py-2 text-sm text-gray-500 text-center"
+                to={route.to}
+                key={route.id}
+                style={({ isActive }) => ({
+                  color: isActive ? 'underline' : '',
+                })}
+              >
+                {route.text}
+              </NavLink>
+            ))}
+
+            {routesProfile.map((route) => (
+              <NavLink
+                className="block px-4 py-2 text-sm text-gray-500 text-center"
+                role="menuitem"
+                tabIndex="-1"
+                to={route.to}
+                key={route.id}
+                style={({ isActive }) => ({
+                  color: isActive ? 'underline' : '',
+                })}
+                onClick={route.text === 'Sign out' ? handleLogout : null}
+              >
+                {route.text}
+              </NavLink>
+            ))}
           </div>
         </div>
 
         {/* Desktop Navbar */}
         <nav className="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row">
-          <Link
-            className="px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600 lg:ml-auto"
-            to="#"
-          >
-            My Wishlist
-          </Link>
-          <Link
-            className="px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600"
-            to="#"
-          >
-            Add books
-          </Link>
-          <Link
-            className="px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600"
-            to="#"
-          >
-            Contact us
-          </Link>
+          {routes.map((route) => (
+            <NavLink
+              to={route.to}
+              key={route.id}
+              className={({ isActive }) =>
+                isActive
+                  ? 'underline px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600'
+                  : 'text-blue-500 px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600'
+              }
+            >
+              {route.text}
+            </NavLink>
+          ))}
 
           <div className="inline-flex items-center gap-2 list-none lg:ml-auto">
             <div className="relative flex-shrink-0 ml-5">
@@ -151,33 +154,21 @@ const Navbar = () => {
                 aria-labelledby="user-menu-button"
                 tabIndex="-1"
               >
-                <Link
-                  to="#"
-                  className="block px-4 py-2 text-sm text-gray-500"
-                  role="menuitem"
-                  tabIndex="-1"
-                  id="user-menu-item-0"
-                >
-                  Your Profile
-                </Link>
-                <Link
-                  to="#"
-                  className="block px-4 py-2 text-sm text-gray-500"
-                  role="menuitem"
-                  tabIndex="-1"
-                  id="user-menu-item-1"
-                >
-                  Settings
-                </Link>
-                <Link
-                  to="#"
-                  className="block px-4 py-2 text-sm text-gray-500"
-                  role="menuitem"
-                  tabIndex="-1"
-                  id="user-menu-item-2"
-                >
-                  Sign out
-                </Link>
+                {routesProfile.map((route) => (
+                  <NavLink
+                    className="block px-4 py-2 text-sm text-gray-500"
+                    role="menuitem"
+                    tabIndex="-1"
+                    to={route.to}
+                    key={route.id}
+                    style={({ isActive }) => ({
+                      color: isActive ? 'underline' : '',
+                    })}
+                    onClick={route.text === 'Sign out' ? handleLogout : null}
+                  >
+                    {route.text}
+                  </NavLink>
+                ))}{' '}
               </div>
             </div>
           </div>
@@ -186,4 +177,38 @@ const Navbar = () => {
     </div>
   );
 };
+
+const routes = [];
+routes.push({
+  id: 1,
+  to: 'home',
+  text: 'Wishlist',
+});
+routes.push({
+  id: 2,
+  to: '/add-books',
+  text: 'Add Books',
+});
+routes.push({
+  id: 3,
+  to: '/about',
+  text: 'About us',
+});
+
+const routesProfile = [];
+routesProfile.push({
+  id: 1,
+  to: '/profile',
+  text: 'Profile',
+});
+routesProfile.push({
+  id: 2,
+  to: '/settings',
+  text: 'Settings',
+});
+routesProfile.push({
+  id: 3,
+  to: '/',
+  text: 'Sign out',
+});
 export default Navbar;

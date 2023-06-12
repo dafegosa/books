@@ -25,7 +25,7 @@ const SOCIAL_NETWORKS = [
 
 const Footer = () => {
   return (
-    <footer className="bg-white w-full absolute bottom-0">
+    <footer className="bg-white w-full">
       <div className="px-4 py-4 mx-auto overflow-hidden max-w-7xl sm:px-6 lg:px-8">
         <nav
           className="flex flex-wrap justify-center -mx-5 -my-2"

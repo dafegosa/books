@@ -3,23 +3,21 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import TextInput from '../inputFields/TextInput';
 
-const SignUpForm = () => {
+const addFormBooks = () => {
   return (
     <Formik
       initialValues={{
-        full_name: '',
-        email: '',
-        name: '',
-        password: '',
-        passwordConfirm: '',
+        genre: '',
+        title: '',
+        author: '',
+        cost: '',
+        observations: '',
       }}
       validationSchema={Yup.object({
-        full_name: Yup.string().required('Required'),
-        email: Yup.string()
-          .email('Invalid email addresss`')
-          .required('Required'),
-        password: Yup.string().required('Required'),
-        passwordConfirm: Yup.string().required('Required'),
+        genre: Yup.string().required('Required'),
+        title: Yup.string().required('Required'),
+        author: Yup.string().required('Required'),
+        cost: Yup.number().required('Required'),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         await new Promise((r) => setTimeout(r, 500));
@@ -31,40 +29,50 @@ const SignUpForm = () => {
       <Form className="mt-4 space-y-6">
         <div className="col-span-full">
           <TextInput
-            label="Email"
-            name="email"
-            type="email"
-            placeholder="your.email.address@mail.com"
+            label="Genre"
+            name="genre"
+            type="genre"
+            placeholder="genre"
             labelStyles="block mb-3 text-sm font-medium text-gray-600"
             inputStyles="block w-full px-6 py-3 text-black bg-white border border-gray-200 appearance-none rounded-xl placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
           />
         </div>
         <div className="col-span-full">
           <TextInput
-            label="Name"
-            name="name"
+            label="Title"
+            name="title"
             type="text"
-            placeholder="your name"
+            placeholder="Book title"
             labelStyles="block mb-3 text-sm font-medium text-gray-600"
             inputStyles="block w-full px-6 py-3 text-black bg-white border border-gray-200 appearance-none rounded-xl placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
           />
         </div>
         <div className="col-span-full">
           <TextInput
-            label="Password"
-            name="password"
-            type="password"
-            placeholder="********"
+            label="Author"
+            name="author"
+            type="text"
+            placeholder="Book author"
             labelStyles="block mb-3 text-sm font-medium text-gray-600"
             inputStyles="block w-full px-6 py-3 text-black bg-white border border-gray-200 appearance-none rounded-xl placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
           />
         </div>
         <div className="col-span-full">
           <TextInput
-            label="Password Confirmation"
-            name="passwordConfirm"
-            type="password"
-            placeholder="********"
+            label="Cost"
+            name="cost"
+            type="text"
+            placeholder="Cost"
+            labelStyles="block mb-3 text-sm font-medium text-gray-600"
+            inputStyles="block w-full px-6 py-3 text-black bg-white border border-gray-200 appearance-none rounded-xl placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+          />
+        </div>
+        <div className="col-span-full">
+          <TextInput
+            label="Observations"
+            name="observations"
+            type="text"
+            placeholder="Book observations"
             labelStyles="block mb-3 text-sm font-medium text-gray-600"
             inputStyles="block w-full px-6 py-3 text-black bg-white border border-gray-200 appearance-none rounded-xl placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
           />
@@ -83,4 +91,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default addFormBooks;

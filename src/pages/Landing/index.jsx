@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom';
 
 import Footer from '../../components/Footer';
-import Navbar from '../../components/Navbar';
 import landingImage from '../../assets/landingImage.jpeg';
 const Landing = () => {
   return (
     <div className="flex flex-col min-h-screen w-full bg-gray-200">
-      <Navbar />
       <div className="flex h-auto bg-white">
-        <div className="flex flex-col justify-center h-[74vh] flex-1 px-8 py-8 md:px-12 lg:flex-none lg:px-24">
+        <div className="flex flex-col justify-center h-screen flex-1 px-8 py-8 md:px-12 lg:flex-none lg:px-24">
           <div className="w-full mx-auto lg:max-w-6xl">
             <div className="max-w-xl mx-auto text-center lg:p-10 lg:text-left">
               <div>
@@ -27,13 +25,6 @@ const Landing = () => {
                   className="items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none lg:w-auto focus-visible:outline-black text-sm focus-visible:ring-black"
                 >
                   Get started
-                </Link>
-                <Link
-                  to="/"
-                  className="inline-flex items-center justify-center text-sm font-semibold text-black duration-200 hover:text-blue-500 focus:outline-none focus-visible:outline-gray-600"
-                >
-                  Learn more
-                  <span aria-hidden="true"> → </span>
                 </Link>
               </div>
             </div>
