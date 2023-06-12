@@ -1,11 +1,6 @@
-import React, { useContext, useState, useReducer, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
-// import { replace } from 'formik';
-
-import axios from 'axios';
+import React, { useContext, useReducer, useMemo } from 'react';
 
 import { authReducer as reducer } from './authReducer';
-import { actions } from './authActions';
 
 const initialState = {
   user: null,

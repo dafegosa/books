@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { Form, Formik } from 'formik';
 import TextInput from '../inputFields/TextInput';
 import * as Yup from 'yup';
+import { useAuth } from '../../store/authContext/authContext';
 
 import { login } from '../../store/authContext/apiAuthCalls';
 import { useAuth } from '../../store/authContext/authContext';

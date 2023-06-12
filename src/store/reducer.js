@@ -8,10 +8,26 @@ export const reducer = (state, action) => {
       return { ...state, count: state.count - 1 };
     case actions.SET_BOOKS:
       let titles = [];
-      action.payload.items.map((book) => {
+      action.payload.items.forEach((book) => {
         titles.push(book.volumeInfo.title);
       });
       return { ...state, books: titles };
+    case actions.TOGGLE_MODAL:
+      return {
+        ...state,
+        books: {
+          ...state.books,
+          openModal: !state.books.openModal,
+        },
+      };
+    case actions.SET_MODAL_TYPE:
+      return {
+        ...state,
+        books: {
+          ...state.books,
+          modalType: action.payload,
+        },
+      };
     default:
       return state;
   }

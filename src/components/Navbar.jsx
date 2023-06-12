@@ -181,7 +181,11 @@ const Navbar = () => {
 const routes = [];
 routes.push({
   id: 1,
+<<<<<<< HEAD
   to: '/home',
+=======
+  to: 'home',
+>>>>>>> dev
   text: 'Wishlist',
 });
 routes.push({

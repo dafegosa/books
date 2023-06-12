@@ -12,12 +12,14 @@ const SignUpForm = () => {
   return (
     <Formik
       initialValues={{
+        full_name: '',
         email: '',
         name: '',
         password: '',
         password_confirmation: '',
       }}
       validationSchema={Yup.object({
+        full_name: Yup.string().required('Required'),
         email: Yup.string()
           .email('Invalid email addresss`')
           .required('Required'),

@@ -54,7 +54,11 @@ const books = [
   },
   {
     gender: 'Ficción',
+<<<<<<< HEAD
     title: 'La sombra del viento1',
+=======
+    title: 'La sombra del viento',
+>>>>>>> dev
     author: 'Carlos Ruiz Zafón',
     cost: 22.99,
     observation: 'Bestseller internacional',
@@ -62,7 +66,11 @@ const books = [
   },
   {
     gender: 'Ficción',
+<<<<<<< HEAD
     title: 'La sombra del viento2',
+=======
+    title: 'La sombra del viento',
+>>>>>>> dev
     author: 'Carlos Ruiz Zafón',
     cost: 22.99,
     observation: 'Bestseller internacional',
@@ -71,7 +79,13 @@ const books = [
 ];
 
 const AppUI = () => {
-  const { modalType, openModal, setOpenModal } = useContext(GlobalContext);
+  const id = useId();
+  const {
+    state: {
+      books: { openModal, modalType },
+    },
+    dispatch,
+  } = useContext(GlobalContext);
 
   return (
     <>
@@ -88,7 +102,7 @@ const AppUI = () => {
 
       {books.length === 0 && <EmptyWishList />}
 
-      <AddBooksButton setOpenModal={setOpenModal} />
+      <AddBooksButton setOpenModal={dispatch} />
 
       {openModal && (
         <Modal>
@@ -99,7 +113,7 @@ const AppUI = () => {
               </h3>
               <ion-icon
                 name="close-circle-outline"
-                onClick={() => setOpenModal((state) => !state)}
+                onClick={() => dispatch({ type: actions.TOGGLE_MODAL })}
               ></ion-icon>
             </div>
             {modalType === 'add' ? <AddFormBooks /> : <EditFormBooks />}
