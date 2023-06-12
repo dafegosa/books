@@ -1,11 +1,11 @@
 import Navbar from '../../components/Navbar';
 
-const NotFound = () => {
+const AddBooks = () => {
   return (
     <div>
       <Navbar />
-      NotFound
+      <h2>AddBooks</h2>
     </div>
   );
 };
-export default NotFound;
+export default AddBooks;
