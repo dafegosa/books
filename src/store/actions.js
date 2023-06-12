@@ -5,4 +5,5 @@ export const actions = {
   COUNT_BOOKS: 'COUNT_BOOKS',
   TOGGLE_MODAL: 'TOGGLE_MODAL',
   SET_MODAL_TYPE: 'SET_MODAL_TYPE',
+  SIGN_UP: 'SIGN_UP',
 };

@@ -19,3 +19,24 @@ export const increment = (dispatch) => {
 export const decrement = (dispatch) => {
   dispatch({ type: 'DECREMENT' });
 };
+
+// AUTH
+
+export const signUp = async (values, dispatch) => {
+  try {
+    const response = await axios.post(
+      'https://cautious-octo-fishstick.onrender.com/api/v1/sign_up',
+      {
+        user: {
+          email: values.email,
+          password: values.password,
+          password_confirmation: values.passwordConfirm,
+        },
+      }
+    );
+    alert('RESPONSE', JSON.stringify(response));
+    dispatch({ type: 'SIGN_UP', payload: values });
+  } catch (error) {
+    console.error(error);
+  }
+};

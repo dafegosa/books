@@ -28,6 +28,8 @@ export const reducer = (state, action) => {
           modalType: action.payload,
         },
       };
+    case actions.SIGN_UP:
+      return state;
     default:
       return state;
   }
