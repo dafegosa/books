@@ -1,6 +1,6 @@
 import ButtonEditBook from '../../components/buttons/ButtonEditBook';
 
-const BookListItem = ({ book, setOpenModal }) => {
+const BookListItem = ({ book }) => {
   return (
     <li className=" p-1 flex flex-col justify-between md:flex-row md:justify-between">
       <div className="flex justify-between items-center w-full mx-4">
@@ -11,7 +11,7 @@ const BookListItem = ({ book, setOpenModal }) => {
           page: {book.page}
         </span>
       </div>
-      <ButtonEditBook setOpenModal={setOpenModal} />
+      <ButtonEditBook />
     </li>
   );
 };

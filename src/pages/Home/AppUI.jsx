@@ -10,6 +10,7 @@ import BookList from './BookList';
 
 import BookListItem from './BookListItem';
 import EditFormBooks from '../../components/forms/editFormBooks ';
+import { actions } from '../../store/actions';
 
 const books = [
   {
@@ -72,24 +73,26 @@ const books = [
 
 const AppUI = () => {
   const id = useId();
-  const { modalType, openModal, setOpenModal } = useContext(GlobalContext);
+  const {
+    state: {
+      books: { openModal, modalType },
+    },
+    dispatch,
+  } = useContext(GlobalContext);
 
   return (
     <>
       <BookList>
         {books.map((book) => (
           <ul key={id + book.title}>
-            <BookListItem
-              book={book}
-              setOpenModal={setOpenModal}
-            ></BookListItem>
+            <BookListItem book={book}></BookListItem>
           </ul>
         ))}
       </BookList>
 
       {books.length === 0 && <EmptyWishList />}
 
-      <AddBooksButton setOpenModal={setOpenModal} />
+      <AddBooksButton />
 
       {openModal && (
         <Modal>
@@ -100,7 +103,7 @@ const AppUI = () => {
               </h3>
               <ion-icon
                 name="close-circle-outline"
-                onClick={() => setOpenModal((state) => !state)}
+                onClick={() => dispatch({ type: actions.TOGGLE_MODAL })}
               ></ion-icon>
             </div>
             {modalType === 'add' ? <AddFormBooks /> : <EditFormBooks />}

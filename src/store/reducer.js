@@ -12,6 +12,22 @@ export const reducer = (state, action) => {
         titles.push(book.volumeInfo.title);
       });
       return { ...state, books: titles };
+    case actions.TOGGLE_MODAL:
+      return {
+        ...state,
+        books: {
+          ...state.books,
+          openModal: !state.books.openModal,
+        },
+      };
+    case actions.SET_MODAL_TYPE:
+      return {
+        ...state,
+        books: {
+          ...state.books,
+          modalType: action.payload,
+        },
+      };
     default:
       return state;
   }
