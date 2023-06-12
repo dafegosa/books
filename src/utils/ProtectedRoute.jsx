@@ -5,7 +5,9 @@ import { useAuth } from '../store/authContext/authContext';
 
 const ProtectedRoute = (redirectPath = 'landing') => {
   const { isAuthenticated } = useAuth();
-  useEffect(() => {}, [isAuthenticated]);
+  useEffect(() => {
+    console.log('Protected route:', isAuthenticated);
+  }, [isAuthenticated]);
 
   if (!isAuthenticated) {
     return (

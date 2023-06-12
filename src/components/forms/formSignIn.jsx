@@ -1,11 +1,14 @@
+import { Navigate } from 'react-router-dom';
 import { Form, Formik } from 'formik';
 import TextInput from '../inputFields/TextInput';
 import * as Yup from 'yup';
 
+import { login } from '../../store/authContext/apiAuthCalls';
 import { useAuth } from '../../store/authContext/authContext';
+import { actions } from '../../store/actions';
 
 const SignInForm = () => {
-  const { login } = useAuth();
+  const { dispatch } = useAuth();
   return (
     <Formik
       initialValues={{
@@ -20,7 +23,19 @@ const SignInForm = () => {
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(false);
-        login(values);
+        console.log('values', values);
+
+        login(dispatch, values)
+          .then((doLogin) => {
+            if (doLogin) {
+              // return <Navigate to="/home" />;
+              return true;
+            }
+          })
+          .catch((error) => {
+            console.error(`Error logging in: , ${error}`);
+            return <Navigate to="/home" />;
+          });
       }}
     >
       <Form className="mt-4 space-y-6">
