@@ -18,7 +18,7 @@ const Navbar = () => {
         <div className="flex flex-row items-center justify-between lg:justify-start">
           <Link
             className="text-lg tracking-tight text-black uppercase focus:outline-none focus:ring lg:text-2xl"
-            to={isAuthenticated ? 'home' : '/'}
+            to={isAuthenticated ? '/home' : '/'}
           >
             <span className="lg:text-lg uppercase focus:ring-0">
               <svg
@@ -181,7 +181,7 @@ const Navbar = () => {
 const routes = [];
 routes.push({
   id: 1,
-  to: 'home',
+  to: '/home',
   text: 'Wishlist',
 });
 routes.push({

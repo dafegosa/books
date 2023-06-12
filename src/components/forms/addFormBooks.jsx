@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import TextInput from '../inputFields/TextInput';
 
-const addFormBooks = () => {
+const AddFormBooks = () => {
   return (
     <Formik
       initialValues={{
@@ -26,7 +26,7 @@ const addFormBooks = () => {
         console.log(values);
       }}
     >
-      <Form className="mt-4 space-y-6">
+      <Form className="m-8 space-y-6">
         <div className="col-span-full">
           <TextInput
             label="Genre"
@@ -91,4 +91,4 @@ const addFormBooks = () => {
   );
 };
 
-export default addFormBooks;
+export default AddFormBooks;

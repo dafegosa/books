@@ -1,11 +1,11 @@
-import { useContext, useId, useState } from 'react';
+import { useContext } from 'react';
 
 import { GlobalContext } from '../../store/globalContext';
 
 import EmptyWishList from './EmptyWishList';
 import AddBooksButton from '../../components/buttons/AddBooksButton';
 import Modal from '../../components/modal/Modal';
-import AddFormBooks from '../../components/forms/addFormBooks';
+import AddFormBooks from '../../components/forms/AddFormBooks';
 import BookList from './BookList';
 
 import BookListItem from './BookListItem';
@@ -54,7 +54,7 @@ const books = [
   },
   {
     gender: 'Ficción',
-    title: 'La sombra del viento',
+    title: 'La sombra del viento1',
     author: 'Carlos Ruiz Zafón',
     cost: 22.99,
     observation: 'Bestseller internacional',
@@ -62,7 +62,7 @@ const books = [
   },
   {
     gender: 'Ficción',
-    title: 'La sombra del viento',
+    title: 'La sombra del viento2',
     author: 'Carlos Ruiz Zafón',
     cost: 22.99,
     observation: 'Bestseller internacional',
@@ -71,22 +71,13 @@ const books = [
 ];
 
 const AppUI = () => {
-  const id = useId();
-  const {
-    state,
-    dispatch,
-    setTypeModal,
-    modalType,
-    setModalType,
-    openModal,
-    setOpenModal,
-  } = useContext(GlobalContext);
+  const { modalType, openModal, setOpenModal } = useContext(GlobalContext);
 
   return (
     <>
       <BookList>
         {books.map((book) => (
-          <ul key={id + book.title}>
+          <ul key={book.title}>
             <BookListItem
               book={book}
               setOpenModal={setOpenModal}
