@@ -10,6 +10,7 @@ import BookList from './BookList';
 
 import BookListItem from './BookListItem';
 import EditFormBooks from '../../components/forms/editFormBooks ';
+import { actions } from '../../store/actions';
 
 const books = [
   {
@@ -54,11 +55,7 @@ const books = [
   },
   {
     gender: 'Ficción',
-<<<<<<< HEAD
     title: 'La sombra del viento1',
-=======
-    title: 'La sombra del viento',
->>>>>>> dev
     author: 'Carlos Ruiz Zafón',
     cost: 22.99,
     observation: 'Bestseller internacional',
@@ -66,11 +63,7 @@ const books = [
   },
   {
     gender: 'Ficción',
-<<<<<<< HEAD
     title: 'La sombra del viento2',
-=======
-    title: 'La sombra del viento',
->>>>>>> dev
     author: 'Carlos Ruiz Zafón',
     cost: 22.99,
     observation: 'Bestseller internacional',
@@ -79,7 +72,6 @@ const books = [
 ];
 
 const AppUI = () => {
-  const id = useId();
   const {
     state: {
       books: { openModal, modalType },
@@ -92,17 +84,14 @@ const AppUI = () => {
       <BookList>
         {books.map((book) => (
           <ul key={book.title}>
-            <BookListItem
-              book={book}
-              setOpenModal={setOpenModal}
-            ></BookListItem>
+            <BookListItem book={book}></BookListItem>
           </ul>
         ))}
       </BookList>
 
       {books.length === 0 && <EmptyWishList />}
 
-      <AddBooksButton setOpenModal={dispatch} />
+      <AddBooksButton />
 
       {openModal && (
         <Modal>

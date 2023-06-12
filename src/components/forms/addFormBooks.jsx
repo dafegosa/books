@@ -91,8 +91,4 @@ const addFormBooks = () => {
   );
 };
 
-<<<<<<< HEAD
-export default AddFormBooks;
-=======
 export default addFormBooks;
->>>>>>> dev

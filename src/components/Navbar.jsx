@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+
 import { useAuth } from '../store/authContext/authContext';
+import { logout } from '../store/authContext/apiAuthCalls';
 
 const Navbar = () => {
-  const { logout, isAuthenticated } = useAuth();
+  const { state, dispatch } = useAuth();
 
   const [desktopMenu, setDesktopMenu] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const handleLogout = () => {
-    logout();
+    logout(dispatch);
   };
 
   return (
@@ -18,7 +20,7 @@ const Navbar = () => {
         <div className="flex flex-row items-center justify-between lg:justify-start">
           <Link
             className="text-lg tracking-tight text-black uppercase focus:outline-none focus:ring lg:text-2xl"
-            to={isAuthenticated ? '/home' : '/'}
+            to={state.isAuthenticated ? '/home' : '/'}
           >
             <span className="lg:text-lg uppercase focus:ring-0">
               <svg
@@ -120,7 +122,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive
                   ? 'underline px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600'
-                  : 'text-blue-500 px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600'
+                  : 'text-blue-500 px-2 py-2 text-sm lg:px-6 md:px-3 hover:text-blue-600'
               }
             >
               {route.text}
@@ -181,11 +183,7 @@ const Navbar = () => {
 const routes = [];
 routes.push({
   id: 1,
-<<<<<<< HEAD
   to: '/home',
-=======
-  to: 'home',
->>>>>>> dev
   text: 'Wishlist',
 });
 routes.push({

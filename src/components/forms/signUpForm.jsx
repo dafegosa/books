@@ -1,25 +1,25 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-
 import TextInput from '../inputFields/TextInput';
+
 import { useAuth } from '../../store/authContext/authContext';
 import { signup } from '../../store/authContext/apiAuthCalls';
 
 const SignUpForm = () => {
   const { dispatch } = useAuth();
+  const navigate = useNavigate();
   return (
     <Formik
       initialValues={{
-        full_name: '',
         email: '',
         name: '',
         password: '',
         password_confirmation: '',
       }}
       validationSchema={Yup.object({
-        full_name: Yup.string().required('Required'),
         email: Yup.string()
           .email('Invalid email addresss`')
           .required('Required'),
@@ -29,14 +29,15 @@ const SignUpForm = () => {
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(false);
+        console.log('values', values);
         signup(dispatch, values)
-          .then((doSignUp) => {
-            if (doSignUp) {
-              Navigate('/home');
-            }
+          .then(() => {
+            console.log('Account created successfully');
+            navigate('/account');
           })
           .catch((error) => {
-            console.error(`Error signing up: , ${error}`);
+            console.error(`Error creating account: , ${error}`);
+            navigate('/account');
           });
       }}
     >

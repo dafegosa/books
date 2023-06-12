@@ -1,15 +1,14 @@
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Form, Formik } from 'formik';
 import TextInput from '../inputFields/TextInput';
 import * as Yup from 'yup';
-import { useAuth } from '../../store/authContext/authContext';
 
 import { login } from '../../store/authContext/apiAuthCalls';
 import { useAuth } from '../../store/authContext/authContext';
-import { actions } from '../../store/actions';
 
 const SignInForm = () => {
   const { dispatch } = useAuth();
+  const navigate = useNavigate();
   return (
     <Formik
       initialValues={{
@@ -27,15 +26,13 @@ const SignInForm = () => {
         console.log('values', values);
 
         login(dispatch, values)
-          .then((doLogin) => {
-            if (doLogin) {
-              // return <Navigate to="/home" />;
-              return true;
-            }
+          .then(() => {
+            console.log('Login successful');
+            navigate('/home');
           })
           .catch((error) => {
             console.error(`Error logging in: , ${error}`);
-            return <Navigate to="/home" />;
+            navigate('/account');
           });
       }}
     >
