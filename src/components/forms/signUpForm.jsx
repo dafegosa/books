@@ -7,7 +7,6 @@ import { signUp } from '../../store/apiCalls';
 
 const SignUpForm = () => {
   const { dispatch } = useContext(GlobalContext);
-  console.log('EN SignUpForm');
   return (
     <Formik
       initialValues={{
@@ -27,7 +26,6 @@ const SignUpForm = () => {
         alert(JSON.stringify(values, null, 2));
         signUp(values, dispatch);
         setSubmitting(false);
-        console.log(values);
       }}
     >
       <Form className="mt-4 space-y-6">

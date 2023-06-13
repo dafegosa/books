@@ -28,15 +28,39 @@ export const signUp = async (values, dispatch) => {
       'https://cautious-octo-fishstick.onrender.com/api/v1/sign_up',
       {
         user: {
+          name: values.name,
           email: values.email,
           password: values.password,
           password_confirmation: values.passwordConfirm,
         },
       }
     );
-    alert('RESPONSE', JSON.stringify(response));
-    dispatch({ type: 'SIGN_UP', payload: values });
+    localStorage.setItem('token', response.headers.token);
+    dispatch({ type: 'AUTH', payload: response?.data?.data?.user });
   } catch (error) {
     console.error(error);
   }
+};
+
+export const signIn = async (values, dispatch) => {
+  try {
+    const response = await axios.post(
+      'https://cautious-octo-fishstick.onrender.com/api/v1/sign_in',
+      {
+        user: {
+          email: values.email,
+          password: values.password,
+        },
+      }
+    );
+    localStorage.setItem('token', response.headers.token);
+    dispatch({ type: 'AUTH', payload: response?.data?.data?.user });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const signOut = async (dispatch) => {
+  localStorage.removeItem('token');
+  dispatch({ type: 'SIGN_OUT' });
 };

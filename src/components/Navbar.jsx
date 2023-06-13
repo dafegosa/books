@@ -1,16 +1,17 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { useAuth } from '../store/authContext/authContext';
+import { signOut } from '../store/apiCalls';
+import { GlobalContext } from '../store/globalContext';
 
 const Navbar = () => {
-  const { logout, isAuthenticated } = useAuth();
-
+  const {
+    state: {
+      user: { authenticated },
+    },
+    dispatch,
+  } = useContext(GlobalContext);
   const [desktopMenu, setDesktopMenu] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
-
-  const handleLogout = () => {
-    logout();
-  };
 
   return (
     <div className="w-full mx-auto bg-white border-b 2xl:max-w-7xl">
@@ -18,7 +19,7 @@ const Navbar = () => {
         <div className="flex flex-row items-center justify-between lg:justify-start">
           <Link
             className="text-lg tracking-tight text-black uppercase focus:outline-none focus:ring lg:text-2xl"
-            to={isAuthenticated ? 'home' : '/'}
+            to="/"
           >
             <span className="lg:text-lg uppercase focus:ring-0">
               <svg
@@ -103,7 +104,7 @@ const Navbar = () => {
                 style={({ isActive }) => ({
                   color: isActive ? 'underline' : '',
                 })}
-                onClick={route.text === 'Sign out' ? handleLogout : null}
+                onClick="Sign out"
               >
                 {route.text}
               </NavLink>
@@ -127,51 +128,53 @@ const Navbar = () => {
             </NavLink>
           ))}
 
-          <div className="inline-flex items-center gap-2 list-none lg:ml-auto">
-            <div className="relative flex-shrink-0 ml-5">
-              <div>
-                <button
-                  type="button"
-                  onClick={() => setDesktopMenu(!desktopMenu)}
-                  className="flex bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  id="user-menu-button"
-                >
-                  <span className="sr-only">Open user menu</span>
-                  <img
-                    className="object-cover w-8 h-8 rounded-full"
-                    src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80"
-                    alt=""
-                  />
-                </button>
-              </div>
-
-              <div
-                className={`absolute ${
-                  desktopMenu ? 'block' : 'hidden'
-                } right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="user-menu-button"
-                tabIndex="-1"
-              >
-                {routesProfile.map((route) => (
-                  <NavLink
-                    className="block px-4 py-2 text-sm text-gray-500"
-                    role="menuitem"
-                    tabIndex="-1"
-                    to={route.to}
-                    key={route.id}
-                    style={({ isActive }) => ({
-                      color: isActive ? 'underline' : '',
-                    })}
-                    onClick={route.text === 'Sign out' ? handleLogout : null}
+          {authenticated && (
+            <div className="inline-flex items-center gap-2 list-none lg:ml-auto">
+              <div className="relative flex-shrink-0 ml-5">
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => setDesktopMenu(!desktopMenu)}
+                    className="flex bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    id="user-menu-button"
                   >
-                    {route.text}
-                  </NavLink>
-                ))}{' '}
+                    <span className="sr-only">Open user menu</span>
+                    <img
+                      className="object-cover w-8 h-8 rounded-full"
+                      src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80"
+                      alt=""
+                    />
+                  </button>
+                </div>
+
+                <div
+                  className={`absolute ${
+                    desktopMenu ? 'block' : 'hidden'
+                  } right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="user-menu-button"
+                  tabIndex="-1"
+                >
+                  {routesProfile.map((route) => (
+                    <NavLink
+                      className="block px-4 py-2 text-sm text-gray-500"
+                      role="menuitem"
+                      tabIndex="-1"
+                      to={route.to}
+                      key={route.id}
+                      style={({ isActive }) => ({
+                        color: isActive ? 'underline' : '',
+                      })}
+                      onClick={route.action && route.action(dispatch)}
+                    >
+                      {route.text}
+                    </NavLink>
+                  ))}{' '}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </nav>
       </div>
     </div>
@@ -210,5 +213,6 @@ routesProfile.push({
   id: 3,
   to: '/',
   text: 'Sign out',
+  action: (dispatch) => () => signOut(dispatch),
 });
 export default Navbar;

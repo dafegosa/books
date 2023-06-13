@@ -23,7 +23,6 @@ const addFormBooks = () => {
         await new Promise((r) => setTimeout(r, 500));
         alert(JSON.stringify(values, null, 2));
         setSubmitting(false);
-        console.log(values);
       }}
     >
       <Form className="mt-4 space-y-6">

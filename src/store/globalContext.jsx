@@ -8,6 +8,10 @@ const initialState = {
     openModal: false,
     modalType: 'add',
   },
+  user: {
+    authenticated: false,
+    info: {},
+  },
 };
 
 export const GlobalContext = createContext();
