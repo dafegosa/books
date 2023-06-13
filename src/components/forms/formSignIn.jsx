@@ -1,10 +1,13 @@
 import { Form, Formik } from 'formik';
 import TextInput from '../inputFields/TextInput';
 import * as Yup from 'yup';
-import { useAuth } from '../../store/authContext/authContext';
+import { signIn } from '../../store/apiCalls';
+import { useContext } from 'react';
+import { GlobalContext } from '../../store/globalContext';
 
 const SignInForm = () => {
-  const { login } = useAuth();
+  const { dispatch } = useContext(GlobalContext);
+
   return (
     <Formik
       initialValues={{
@@ -18,10 +21,8 @@ const SignInForm = () => {
           .required('Required'),
         password: Yup.string().required('Required'),
       })}
-      onSubmit={async (values, { setSubmitting }) => {
-        await new Promise((r) => setTimeout(r, 500));
-        setSubmitting(false);
-        login(values);
+      onSubmit={async (values) => {
+        signIn(values, dispatch);
       }}
     >
       <Form className="mt-4 space-y-6">

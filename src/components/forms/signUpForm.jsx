@@ -1,31 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import TextInput from '../inputFields/TextInput';
+import { GlobalContext } from '../../store/globalContext';
+import { signUp } from '../../store/apiCalls';
 
 const SignUpForm = () => {
+  const { dispatch } = useContext(GlobalContext);
   return (
     <Formik
       initialValues={{
-        full_name: '',
         email: '',
         name: '',
         password: '',
         passwordConfirm: '',
       }}
       validationSchema={Yup.object({
-        full_name: Yup.string().required('Required'),
         email: Yup.string()
           .email('Invalid email addresss`')
           .required('Required'),
         password: Yup.string().required('Required'),
         passwordConfirm: Yup.string().required('Required'),
       })}
-      onSubmit={async (values, { setSubmitting }) => {
-        await new Promise((r) => setTimeout(r, 500));
+      onSubmit={(values, { setSubmitting }) => {
         alert(JSON.stringify(values, null, 2));
+        signUp(values, dispatch);
         setSubmitting(false);
-        console.log(values);
       }}
     >
       <Form className="mt-4 space-y-6">

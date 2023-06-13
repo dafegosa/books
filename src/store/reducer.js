@@ -28,6 +28,22 @@ export const reducer = (state, action) => {
           modalType: action.payload,
         },
       };
+    case actions.AUTH:
+      return {
+        ...state,
+        user: {
+          authenticated: true,
+          info: action.payload,
+        },
+      };
+    case actions.SIGN_OUT:
+      return {
+        ...state,
+        user: {
+          authenticated: false,
+          info: {},
+        },
+      };
     default:
       return state;
   }
