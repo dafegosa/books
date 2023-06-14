@@ -11,7 +11,15 @@ export const reducer = (state, action) => {
       action.payload.items.forEach((book) => {
         titles.push(book.volumeInfo.title);
       });
-      return { ...state, books: titles };
+      return { ...state, books: { ...state.books, items: titles } };
+    case actions.LOADING_BOOKS:
+      return {
+        ...state,
+        books: {
+          ...state.books,
+          loadingBooks: action.payload,
+        },
+      };
     case actions.TOGGLE_MODAL:
       return {
         ...state,

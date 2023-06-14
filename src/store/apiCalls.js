@@ -4,7 +4,7 @@ import { actions } from './actions';
 export const fetchBooks = async (dispatch) => {
   try {
     const response = await axios.get(
-      'https://www.googleapis.com/books/v1/volumes?q=free-ebooks'
+      'https://cautious-octo-fishstick.onrender.com/api/v1/books'
     );
     dispatch({ type: actions.SET_BOOKS, payload: response.data });
   } catch (error) {

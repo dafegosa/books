@@ -1,4 +1,4 @@
-import { useContext, useId } from 'react';
+import { useContext, useId, useEffect } from 'react';
 
 import { GlobalContext } from '../../store/globalContext';
 
@@ -10,87 +10,49 @@ import BookList from './BookList';
 
 import BookListItem from './BookListItem';
 import EditFormBooks from '../../components/forms/editFormBooks ';
-import { actions } from '../../store/actions';
+import Loading from '../Loading';
 
-const books = [
-  {
-    gender: 'Ficción',
-    title: 'Cien años de soledad',
-    author: 'Gabriel García Márquez',
-    cost: 20.99,
-    observation: 'Premio Nobel de Literatura',
-    page: 20,
-  },
-  {
-    gender: 'Ficción',
-    title: 'El amor en los tiempos del cólera',
-    author: 'Gabriel García Márquez',
-    cost: 18.99,
-    observation: 'Premio Nobel de Literatura',
-    page: 93,
-  },
-  {
-    gender: 'No ficción',
-    title: 'Sapiens. De animales a dioses',
-    author: 'Yuval Noah Harari',
-    cost: 25.99,
-    observation: 'Bestseller internacional',
-    page: 55,
-  },
-  {
-    gender: 'No ficción',
-    title: 'El poder del ahora',
-    author: 'Eckhart Tolle',
-    cost: 15.99,
-    observation: 'Bestseller internacional',
-    page: 0,
-  },
-  {
-    gender: 'Ficción',
-    title: 'La sombra del viento',
-    author: 'Carlos Ruiz Zafón',
-    cost: 22.99,
-    observation: 'Bestseller internacional',
-    page: 44,
-  },
-  {
-    gender: 'Ficción',
-    title: 'La sombra del viento',
-    author: 'Carlos Ruiz Zafón',
-    cost: 22.99,
-    observation: 'Bestseller internacional',
-    page: 44,
-  },
-  {
-    gender: 'Ficción',
-    title: 'La sombra del viento',
-    author: 'Carlos Ruiz Zafón',
-    cost: 22.99,
-    observation: 'Bestseller internacional',
-    page: 44,
-  },
-];
+import { actions } from '../../store/actions';
+import { fetchBooks } from '../../store/apiCalls';
 
 const AppUI = () => {
   const id = useId();
   const {
     state: {
-      books: { openModal, modalType },
+      books: { items, loadingBooks, openModal, modalType },
     },
     dispatch,
   } = useContext(GlobalContext);
 
+  useEffect(() => {
+    fetchBooks(dispatch);
+  }, [dispatch]);
+
+  useEffect(() => {
+    const loadingTimeout = setTimeout(() => {
+      dispatch({ type: actions.LOADING_BOOKS, payload: false });
+    }, 500);
+
+    return () => {
+      clearTimeout(loadingTimeout);
+    };
+  }, [dispatch, items]);
+
   return (
     <>
-      <BookList>
-        {books.map((book) => (
-          <ul key={id + book.title}>
-            <BookListItem book={book}></BookListItem>
-          </ul>
-        ))}
-      </BookList>
+      {loadingBooks ? (
+        <Loading />
+      ) : (
+        <BookList>
+          {items?.map((book) => (
+            <ul key={id + book} className="py-2">
+              <BookListItem book={book}></BookListItem>
+            </ul>
+          ))}
+        </BookList>
+      )}
 
-      {books.length === 0 && <EmptyWishList />}
+      {items?.length === 0 && <EmptyWishList />}
 
       <AddBooksButton />
 
@@ -102,7 +64,7 @@ const AppUI = () => {
                 {modalType === 'add' ? 'Add New Books' : 'Edit Book'}
               </h3>
               <ion-icon
-                name="close-circle-outline"
+                className="close-circle-outline"
                 onClick={() => dispatch({ type: actions.TOGGLE_MODAL })}
               ></ion-icon>
             </div>
