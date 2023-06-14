@@ -89,6 +89,7 @@ const Navbar = () => {
                 style={({ isActive }) => ({
                   color: isActive ? 'underline' : '',
                 })}
+                onClick={() => setMobileMenu(!mobileMenu)}
               >
                 {route.text}
               </NavLink>
@@ -184,7 +185,7 @@ const Navbar = () => {
 const routes = [];
 routes.push({
   id: 1,
-  to: 'home',
+  to: '/home',
   text: 'Wishlist',
 });
 routes.push({
