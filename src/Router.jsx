@@ -26,16 +26,15 @@ const Router = () => {
       <Route path="account" element={authenticated ? <Home /> : <Account />} />
       <Route
         path="/home"
-        // element={
-        //   <PrivateRoute isAuthenticated={authenticated} component={Home} />
-        // }
-        element={<Home />}
+        element={
+          <PrivateRoute isAuthenticated={authenticated} component={Home} />
+        }
       />
       <Route
         path="/add-books"
-        // element={
-        //   <PrivateRoute isAuthenticated={authenticated} component={MyStates} />
-        // }
+        element={
+          <PrivateRoute isAuthenticated={authenticated} component={MyStates} />
+        }
       />
       <Route path="/*" element={<NotFound />} />
     </Routes>
