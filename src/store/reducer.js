@@ -8,10 +8,18 @@ export const reducer = (state, action) => {
       return { ...state, count: state.count - 1 };
     case actions.SET_BOOKS:
       let titles = [];
-      action.payload.items.forEach((book) => {
-        titles.push(book.volumeInfo.title);
+      action?.payload?.data?.books?.forEach((book) => {
+        titles.push(book);
       });
-      return { ...state, books: titles };
+      return { ...state, books: { ...state.books, items: titles } };
+    case actions.LOADING_BOOKS:
+      return {
+        ...state,
+        books: {
+          ...state.books,
+          loadingBooks: action.payload,
+        },
+      };
     case actions.TOGGLE_MODAL:
       return {
         ...state,

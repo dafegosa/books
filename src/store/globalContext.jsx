@@ -5,6 +5,7 @@ const initialState = {
   count: 0,
   books: {
     items: [],
+    loadingBooks: true,
     openModal: false,
     modalType: 'add',
   },
