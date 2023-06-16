@@ -46,7 +46,7 @@ export const createBook = async (dispatch, values) => {
 export const deleteBook = async (dispatch, id) => {
   try {
     await axios.delete(
-      `https://cautious-octo-fishstick.onrender.com/api/v1/books/:${id}`,
+      `https://cautious-octo-fishstick.onrender.com/api/v1/books/${id}`,
       {
         headers: {
           Authorization: localStorage.getItem('token') || '',
