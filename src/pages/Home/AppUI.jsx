@@ -63,10 +63,14 @@ const AppUI = () => {
               <h3 className="text-2xl font-medium tracking-tight text-black sm:text-xl md:text-4xl text-center mb-8">
                 {modalType === 'add' ? 'Add New Books' : 'Edit Book'}
               </h3>
+              <button onClick={() => dispatch({ type: actions.TOGGLE_MODAL })}>
+                {' '}
+                close
+              </button>
               <ion-icon
                 className="close-circle-outline"
                 onClick={() => dispatch({ type: actions.TOGGLE_MODAL })}
-              ></ion-icon>
+              />
             </div>
             {modalType === 'add' ? <AddFormBooks /> : <EditFormBooks />}
           </div>
