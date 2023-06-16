@@ -54,7 +54,7 @@ const AppUI = () => {
 
       {items?.length === 0 && <EmptyWishList />}
 
-      {/* <AddBooksButton /> */}
+      <AddBooksButton />
 
       {openModal && (
         <Modal>
