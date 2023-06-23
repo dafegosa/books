@@ -7,7 +7,7 @@ const AddBooks = () => {
       <div className="w-full max-w-md">
         <h2>
           <span className="block mb-3 text-3xl font-medium text-gray-600 text-center mt-2">
-            Add Books Tp Your Wishlist
+            Add Books To Your Wishlist
           </span>
         </h2>
         <AddFormBooks />
