@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { actions } from './actions';
 
+// BOOKS
 export const fetchBooks = async (dispatch) => {
   try {
     const response = await axios.get(
@@ -18,16 +19,47 @@ export const fetchBooks = async (dispatch) => {
   }
 };
 
-export const increment = (dispatch) => {
-  dispatch({ type: 'INCREMENT' });
+export const createBook = async (dispatch, values) => {
+  try {
+    await axios.post(
+      'https://cautious-octo-fishstick.onrender.com/api/v1/books',
+      {
+        book: {
+          name: values.title,
+          author: values.author,
+          read_at: '2023-06-01',
+        },
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem('token') || '',
+        },
+      }
+    );
+    await fetchBooks(dispatch);
+    dispatch({ type: actions.TOGGLE_MODAL });
+  } catch (error) {
+    console.error('Error fetching books:', error);
+  }
 };
 
-export const decrement = (dispatch) => {
-  dispatch({ type: 'DECREMENT' });
+export const deleteBook = async (dispatch, id) => {
+  try {
+    await axios.delete(
+      `https://cautious-octo-fishstick.onrender.com/api/v1/books/${id}`,
+      {
+        headers: {
+          Authorization: localStorage.getItem('token') || '',
+        },
+      }
+    );
+    await fetchBooks(dispatch);
+  } catch (error) {
+    console.error('Error fetching books:', error);
+  }
 };
 
 // AUTH
-
 export const signUp = async (values, dispatch) => {
   try {
     const response = await axios.post(
@@ -69,4 +101,13 @@ export const signIn = async (values, dispatch) => {
 export const signOut = async (dispatch) => {
   localStorage.removeItem('token');
   dispatch({ type: 'SIGN_OUT' });
+};
+
+// OTHERS
+export const increment = (dispatch) => {
+  dispatch({ type: 'INCREMENT' });
+};
+
+export const decrement = (dispatch) => {
+  dispatch({ type: 'DECREMENT' });
 };

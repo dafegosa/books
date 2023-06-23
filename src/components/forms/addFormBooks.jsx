@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import TextInput from '../inputFields/TextInput';
+import { createBook } from '../../store/apiCalls';
+import { GlobalContext } from '../../store/globalContext';
 
-const addFormBooks = () => {
+const AddFormBooks = () => {
+  const { dispatch } = useContext(GlobalContext);
   return (
     <Formik
       initialValues={{
@@ -20,9 +23,7 @@ const addFormBooks = () => {
         cost: Yup.number().required('Required'),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        await new Promise((r) => setTimeout(r, 500));
-        alert(JSON.stringify(values, null, 2));
-        setSubmitting(false);
+        createBook(dispatch, values);
       }}
     >
       <Form className="mt-4 space-y-6">
@@ -90,4 +91,4 @@ const addFormBooks = () => {
   );
 };
 
-export default addFormBooks;
+export default AddFormBooks;
