@@ -45,7 +45,7 @@ const AppUI = () => {
       ) : (
         <BookList>
           {items?.map((book) => (
-            <ul key={id + book} className="py-2">
+            <ul key={book.id} className="py-2">
               <BookListItem book={book}></BookListItem>
             </ul>
           ))}
