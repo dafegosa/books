@@ -19,18 +19,29 @@ const BookListItem = ({ book }) => {
             className="sm:order-3 sm:bottom-2 w-4 h-4 ml-2"
           />
         </div>
-        <div className="w-5/12">
+        <div className="sm:w-full sm:text-center md:w-5/12">
           <span className="py-2.5 text-lg text-left font-bold text-gray-600">
             {book.title}
           </span>
         </div>
-        <div className="w-2/12">
-          <span className="text-xs font-semibold  flex items-center">
-            author: {book.author}
+        <div className="sm:w-full sm:text-center md:w-2/12">
+          <span className="text-xs font-semibold md:flex items-center">
+            {book.author}
+          </span>
+        </div>
+        <div className="sm:w-full sm:text-center md:w-2/12">
+          <span className="text-xs font-semibold md:flex items-center">
+            page:
+          </span>
+          <span
+            onClick={() => alert('change page')}
+            className="text-xl ml-3 font-semibold text-gray-800 md:flex items-center hover:text-cyan-400 cursor-pointer"
+          >
+            53
           </span>
         </div>
       </div>
-      <div className="w-44 flex justify-end py-1">
+      <div className="sm:w-full md:w-44 flex justify-end py-1">
         <ButtonEditBook
           text={'Edit'}
           actions={() => {
@@ -42,12 +53,12 @@ const BookListItem = ({ book }) => {
           }
         />
       </div>
-      <div className="w-40 flex justify-end mr-2 py-1">
+      <div className="sm:w-full md:w-40 flex justify-end mr-2 py-1">
         <ButtonEditBook
           text={'Delete'}
           actions={() => deleteBook(dispatch, book.id)}
           variantStyles={
-            'text-white bg-red-600 hover:border-red-600 hover:text-red-600 focus-visible:outline-red-600 border-red-600 focus-visible:ring-red-600'
+            'text-white bg-red-500 hover:border-red-600 hover:text-red-600 focus-visible:outline-red-600 border-red-600 focus-visible:ring-red-600'
           }
         />
       </div>

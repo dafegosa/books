@@ -59,7 +59,7 @@ const AppUI = () => {
       {openModal && (
         <Modal>
           <div className="flex flex-col items-center justify-center w-full h-full">
-            <div className="flex justify-around">
+            <div className="flex w-full justify-around">
               <h3 className="text-3xl font-medium tracking-tight text-gray-600 md:text-4xl text-center">
                 {modalType === 'add' ? 'Add Books' : 'Edit Book'}
               </h3>
@@ -69,7 +69,7 @@ const AppUI = () => {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-square-rounded-x"
+                  className="icon icon-tabler icon-tabler-square-rounded-x"
                   width="44"
                   height="44"
                   viewBox="0 0 24 24"
