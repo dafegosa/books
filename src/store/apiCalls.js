@@ -25,9 +25,10 @@ export const createBook = async (dispatch, values) => {
       'https://cautious-octo-fishstick.onrender.com/api/v1/books',
       {
         book: {
-          name: values.title,
+          title: values.title,
           author: values.author,
-          read_at: '2023-06-01',
+          cost: values.cost,
+          gender: values.gender,
         },
       },
       {
