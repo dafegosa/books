@@ -21,7 +21,7 @@ const BookListItem = ({ book }) => {
         </div>
         <div className="w-5/12">
           <span className="py-2.5 text-lg text-left font-bold text-gray-600">
-            {book.name}
+            {book.title}
           </span>
         </div>
         <div className="w-2/12">
