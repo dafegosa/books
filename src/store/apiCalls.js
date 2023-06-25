@@ -112,3 +112,45 @@ export const increment = (dispatch) => {
 export const decrement = (dispatch) => {
   dispatch({ type: 'DECREMENT' });
 };
+
+export const markAsRead = (dispatch, id) => {
+  dispatch({ type: 'MARK_AS_READ', payload: id });
+  try {
+    axios.put(
+      `https://cautious-octo-fishstick.onrender.com/api/v1/books/${id}`,
+      {
+        book: {
+          read: true,
+        },
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem('token') || '',
+        },
+      }
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updatePageNumber = (dispatch, page, idBook) => {
+  dispatch({ type: 'UPDATE_PAGE_NUMBER', payload: { page, idBook } });
+  try {
+    axios.put(
+      `https://cautious-octo-fishstick.onrender.com/api/v1/books/${idBook}`,
+      {
+        book: {
+          page_number: page,
+        },
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem('token') || '',
+        },
+      }
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};

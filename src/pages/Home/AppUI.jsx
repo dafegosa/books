@@ -16,7 +16,6 @@ import { actions } from '../../store/actions';
 import { fetchBooks } from '../../store/apiCalls';
 
 const AppUI = () => {
-  const id = useId();
   const {
     state: {
       books: { items, loadingBooks, openModal, modalType },

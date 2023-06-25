@@ -52,6 +52,13 @@ export const reducer = (state, action) => {
           info: {},
         },
       };
+    case actions.MARK_AS_READ:
+      let books = state.books.items.map((book) => {
+        if (book.id === action.payload) {
+          book.read = true;
+        }
+        return book;
+      });
     default:
       return state;
   }

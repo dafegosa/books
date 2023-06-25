@@ -9,6 +9,8 @@ import NotFound from './pages/NotFound';
 import { GlobalContext } from './store/globalContext';
 import Loading from './pages/Loading';
 import AddBooks from './pages/AddBooks';
+import Readings from './pages/Readings';
+import BookSentences from './pages/Readings/BookSentences';
 
 const PrivateRoute = ({ component: Component, isAuthenticated }) =>
   isAuthenticated ? <Component /> : <Account />;
@@ -35,6 +37,21 @@ const Router = () => {
         path="/add-books"
         element={
           <PrivateRoute isAuthenticated={authenticated} component={AddBooks} />
+        }
+      />
+      <Route
+        path="/readings"
+        element={
+          <PrivateRoute isAuthenticated={authenticated} component={Readings} />
+        }
+      />
+      <Route
+        path="/readings/:id"
+        element={
+          <PrivateRoute
+            isAuthenticated={authenticated}
+            component={BookSentences}
+          />
         }
       />
       <Route path="/*" element={<NotFound />} />
