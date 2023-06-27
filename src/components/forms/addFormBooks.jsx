@@ -10,14 +10,14 @@ const AddFormBooks = () => {
   return (
     <Formik
       initialValues={{
-        gender: '',
+        genre: '',
         title: '',
         author: '',
         cost: '',
         observations: '',
       }}
       validationSchema={Yup.object({
-        gender: Yup.string().required('Required'),
+        genre: Yup.string().required('Required'),
         title: Yup.string().required('Required'),
         author: Yup.string().required('Required'),
         cost: Yup.number().required('Required'),
@@ -29,9 +29,9 @@ const AddFormBooks = () => {
       <Form className="mt-4 space-y-6">
         <div className="col-span-full">
           <TextInput
-            label="gender"
-            name="gender"
-            type="gender"
+            label="genre"
+            name="genre"
+            type="genre"
             placeholder="gender"
             labelStyles="block mb-3 text-sm font-medium text-gray-600"
             inputStyles="block w-full px-6 py-3 text-black bg-white border border-gray-200 appearance-none rounded-xl placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"

@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
+
 import { GlobalContext } from '../../store/globalContext';
 import { actions } from '../../store/actions';
 import Modal from '../../components/modal/Modal';
@@ -10,7 +11,7 @@ const BookSentences = () => {
 
   const {
     state: {
-      books: { items, openModal, modalType },
+      books: { openModal },
     },
     dispatch,
   } = React.useContext(GlobalContext);
@@ -28,10 +29,61 @@ const BookSentences = () => {
 
       <section className="py-20 bg-gray-100 sm:py-9">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <ul
-            role="list"
-            className="grid max-w-2xl grid-cols-1 gap-6 mx-auto sm:gap-8 lg:max-w-none lg:grid-cols-3"
-          >
+          <ul className="grid max-w-2xl grid-cols-1 gap-6 mx-auto sm:gap-8 lg:max-w-none lg:grid-cols-3">
+            <li>
+              <figure className="relative h-full p-6 bg-white rounded-3xl">
+                <blockquote className="relative">
+                  <p className="text-base text-gray-500">
+                    "Muchos años después, frente al pelotón de fusilamiento, el
+                    coronel Aureliano Buendía había de recordar aquella tarde
+                    remota en que su padre lo llevó a conocer el hielo."
+                  </p>
+                </blockquote>
+                <figcaption className="relative flex items-center justify-between pt-6 mt-6 border-t border-gray-100">
+                  <div>
+                    <div className="text-base text-black">Page 1</div>
+                    <div className="mt-1 text-sm text-gray-500">
+                      Cien años de soledad
+                    </div>
+                  </div>
+                  <div className="overflow-hidden rounded-full bg-gray-50">
+                    <button
+                      className="items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none lg:w-auto focus-visible:outline-black text-sm focus-visible:ring-black"
+                      onClick={() => dispatch({ type: actions.TOGGLE_MODAL })}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure className="relative h-full p-6 bg-white rounded-3xl">
+                <blockquote className="relative">
+                  <p className="text-base text-gray-500">
+                    "Muchos años después, frente al pelotón de fusilamiento, el
+                    coronel Aureliano Buendía había de recordar aquella tarde
+                    remota en que su padre lo llevó a conocer el hielo."
+                  </p>
+                </blockquote>
+                <figcaption className="relative flex items-center justify-between pt-6 mt-6 border-t border-gray-100">
+                  <div>
+                    <div className="text-base text-black">Page 1</div>
+                    <div className="mt-1 text-sm text-gray-500">
+                      Cien años de soledad
+                    </div>
+                  </div>
+                  <div className="overflow-hidden rounded-full bg-gray-50">
+                    <button
+                      className="items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none lg:w-auto focus-visible:outline-black text-sm focus-visible:ring-black"
+                      onClick={() => dispatch({ type: actions.TOGGLE_MODAL })}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </figcaption>
+              </figure>
+            </li>
             <li>
               <figure className="relative h-full p-6 bg-white rounded-3xl">
                 <blockquote className="relative">

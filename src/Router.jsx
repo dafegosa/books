@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
 import Home from './pages/Home';
-import MyStates from './pages/testig-states';
 import About from './pages/About';
 import Landing from './pages/Landing';
 import Account from './pages/Account';

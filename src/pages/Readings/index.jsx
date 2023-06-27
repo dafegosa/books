@@ -1,17 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { GlobalContext } from '../../store/globalContext';
-import BookList from '../Home/BookList';
-import BookListItem from '../Home/BookListItem';
-import AddBooksButton from '../../components/buttons/AddBooksButton';
-import { actions } from '../../store/actions';
 import { Link } from 'react-router-dom';
-import Modal from '../../components/modal/Modal';
+import ButtonEditBook from '../../components/buttons/ButtonEditBook';
+import { deleteBook } from '../../store/apiCalls';
 
 const Readings = () => {
   const {
     state: {
-      books: { items, openModal },
+      books: { items },
     },
     dispatch,
   } = React.useContext(GlobalContext);
@@ -48,12 +45,22 @@ const Readings = () => {
                           </p>
                         </div>
                       </div>
-                      <Link
-                        to={`/readings/${book.id}`}
-                        className="items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none lg:w-auto focus-visible:outline-black text-sm focus-visible:ring-black"
-                      >
-                        Favorite sentences
-                      </Link>
+
+                      <div className="w-40 flex justify-end mr-2 py-1">
+                        <Link
+                          to={`/readings/${book.id}`}
+                          className="items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none lg:w-auto focus-visible:outline-black text-sm focus-visible:ring-black"
+                        >
+                          Favorite sentences
+                        </Link>
+                        <ButtonEditBook
+                          text={'Delete'}
+                          actions={() => deleteBook(dispatch, book.id)}
+                          variantStyles={
+                            'text-white bg-red-500 hover:border-red-600 hover:text-red-600 focus-visible:outline-red-600 border-red-600 focus-visible:ring-red-600'
+                          }
+                        />
+                      </div>
                     </div>
                   </div>
                 </li>

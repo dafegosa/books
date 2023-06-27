@@ -47,40 +47,45 @@ const BookListItem = ({ book }) => {
           </span>
         </div>
       </div>
-      <div className="sm:w-full md:w-44 flex justify-end py-1">
-        <ButtonEditBook
-          text={'Sentences'}
-          actions={() => {
-            dispatch({ type: actions.TOGGLE_MODAL });
-            dispatch({ type: actions.SET_MODAL_TYPE, payload: 'addSentences' });
-            localStorage.setItem('bookSentencesId', book.id);
-          }}
-          variantStyles={
-            'text-white bg-black hover:border-black hover:text-black focus-visible:outline-black border-black focus-visible:ring-black'
-          }
-        />
-      </div>
-      <div className="sm:w-full md:w-44 flex justify-end py-1">
-        <ButtonEditBook
-          text={'Edit'}
-          actions={() => {
-            dispatch({ type: actions.TOGGLE_MODAL });
-            dispatch({ type: actions.SET_MODAL_TYPE, payload: 'edit' });
-            localStorage.setItem('bookIdToEdit', book.id);
-          }}
-          variantStyles={
-            'text-white bg-black hover:border-black hover:text-black focus-visible:outline-black border-black focus-visible:ring-black'
-          }
-        />
-      </div>
-      <div className="sm:w-full md:w-40 flex justify-end mr-2 py-1">
-        <ButtonEditBook
-          text={'Delete'}
-          actions={() => deleteBook(dispatch, book.id)}
-          variantStyles={
-            'text-white bg-red-500 hover:border-red-600 hover:text-red-600 focus-visible:outline-red-600 border-red-600 focus-visible:ring-red-600'
-          }
-        />
+      <div className="flex flex-col items-center lg:flex-row">
+        <div className="w-44 flex justify-end py-1">
+          <ButtonEditBook
+            text={'Sentences'}
+            actions={() => {
+              dispatch({ type: actions.TOGGLE_MODAL });
+              dispatch({
+                type: actions.SET_MODAL_TYPE,
+                payload: 'addSentences',
+              });
+              localStorage.setItem('bookSentencesId', book.id);
+            }}
+            variantStyles={
+              'text-white bg-black hover:border-black hover:text-black focus-visible:outline-black border-black focus-visible:ring-black'
+            }
+          />
+        </div>
+        <div className="w-44 flex justify-end py-1">
+          <ButtonEditBook
+            text={'Edit'}
+            actions={() => {
+              dispatch({ type: actions.TOGGLE_MODAL });
+              dispatch({ type: actions.SET_MODAL_TYPE, payload: 'edit' });
+              localStorage.setItem('bookIdToEdit', book.id);
+            }}
+            variantStyles={
+              'text-white bg-black hover:border-black hover:text-black focus-visible:outline-black border-black focus-visible:ring-black'
+            }
+          />
+        </div>
+        <div className="w-40 flex justify-end mr-2 py-1">
+          <ButtonEditBook
+            text={'Delete'}
+            actions={() => deleteBook(dispatch, book.id)}
+            variantStyles={
+              'text-white bg-red-500 hover:border-red-600 hover:text-red-600 focus-visible:outline-red-600 border-red-600 focus-visible:ring-red-600'
+            }
+          />
+        </div>
       </div>
     </li>
   );

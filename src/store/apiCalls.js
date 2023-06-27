@@ -170,7 +170,6 @@ export const markAsRead = async (dispatch, id) => {
 
   try {
     const { data } = await axios.request(options);
-    console.log(data);
     await fetchBooks(dispatch);
   } catch (error) {
     console.error(error);
