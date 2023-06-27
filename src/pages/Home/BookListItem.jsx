@@ -49,6 +49,19 @@ const BookListItem = ({ book }) => {
       </div>
       <div className="sm:w-full md:w-44 flex justify-end py-1">
         <ButtonEditBook
+          text={'Sentences'}
+          actions={() => {
+            dispatch({ type: actions.TOGGLE_MODAL });
+            dispatch({ type: actions.SET_MODAL_TYPE, payload: 'addSentences' });
+            localStorage.setItem('bookSentencesId', book.id);
+          }}
+          variantStyles={
+            'text-white bg-black hover:border-black hover:text-black focus-visible:outline-black border-black focus-visible:ring-black'
+          }
+        />
+      </div>
+      <div className="sm:w-full md:w-44 flex justify-end py-1">
+        <ButtonEditBook
           text={'Edit'}
           actions={() => {
             dispatch({ type: actions.TOGGLE_MODAL });

@@ -1,4 +1,4 @@
-import { useContext, useId, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { GlobalContext } from '../../store/globalContext';
 
@@ -15,6 +15,8 @@ import Loading from '../Loading';
 import { actions } from '../../store/actions';
 import { fetchBooks } from '../../store/apiCalls';
 import UpdateFormPage from '../../components/forms/updateFormPage';
+import EditFormBookSentences from '../../components/forms/editFormBookSentences';
+import AddFormBookSentences from '../../components/forms/addFormBookSentences';
 
 const AppUI = () => {
   const {
@@ -65,7 +67,9 @@ const AppUI = () => {
               <h3 className="text-3xl font-medium tracking-tight text-gray-600 md:text-4xl text-center">
                 {modalType === 'add' ? 'Add Books' : ''}
                 {modalType === 'edit' ? 'Edit Book' : ''}
-                {modalType === 'Update Page' ? 'Update Page' : ''}
+                {modalType === 'addSentences' ? 'Add Favorite Sentences' : ''}
+                {modalType === 'editSentences' ? 'Edit Favorite Sentences' : ''}
+                {modalType === 'updatePage' ? 'Update Page' : ''}
               </h3>
               <button
                 className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
@@ -91,6 +95,8 @@ const AppUI = () => {
             </div>
             {modalType === 'add' && <AddFormBooks />}
             {modalType === 'edit' && <EditFormBooks />}
+            {modalType === 'addSentences' && <AddFormBookSentences />}
+            {modalType === 'editSentences' && <EditFormBookSentences />}
             {modalType === 'updatePage' && <UpdateFormPage />}
           </div>
         </Modal>

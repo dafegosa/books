@@ -196,10 +196,15 @@ routes.push({
 routes.push({
   id: 3,
   to: '/readings',
-  text: 'Books I’ve Read',
+  text: 'Reading',
 });
 routes.push({
   id: 4,
+  to: '/finished-books',
+  text: 'Books I’ve Read',
+});
+routes.push({
+  id: 5,
   to: '/about',
   text: 'About us',
 });

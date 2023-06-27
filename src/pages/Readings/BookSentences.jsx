@@ -26,11 +26,11 @@ const BookSentences = () => {
         </h1>
       </div>
 
-      <section class="py-20 bg-gray-100 sm:py-9">
-        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <section className="py-20 bg-gray-100 sm:py-9">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <ul
             role="list"
-            class="grid max-w-2xl grid-cols-1 gap-6 mx-auto sm:gap-8 lg:max-w-none lg:grid-cols-3"
+            className="grid max-w-2xl grid-cols-1 gap-6 mx-auto sm:gap-8 lg:max-w-none lg:grid-cols-3"
           >
             <li>
               <figure className="relative h-full p-6 bg-white rounded-3xl">

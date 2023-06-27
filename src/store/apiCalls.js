@@ -29,6 +29,7 @@ export const createBook = async (dispatch, values) => {
           author: values.author,
           cost: values.cost,
           gender: values.gender,
+          observations: values.observations,
         },
       },
       {

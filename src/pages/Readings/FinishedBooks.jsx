@@ -1,14 +1,8 @@
-import React, { useEffect } from 'react';
-
-import { GlobalContext } from '../../store/globalContext';
-import BookList from '../Home/BookList';
-import BookListItem from '../Home/BookListItem';
-import AddBooksButton from '../../components/buttons/AddBooksButton';
-import { actions } from '../../store/actions';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Modal from '../../components/modal/Modal';
+import { GlobalContext } from '../../store/globalContext';
 
-const Readings = () => {
+const FinishedBooks = () => {
   const {
     state: {
       books: { items, openModal },
@@ -28,7 +22,7 @@ const Readings = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <ul className="grid max-w-2xl grid-cols-1 gap-6 mx-auto sm:gap-8 lg:max-w-none lg:grid-cols-3">
             {items
-              ?.filter((book) => book.read_at === null)
+              ?.filter((book) => book.read_at !== null)
               .map((book) => (
                 <li key={book.id}>
                   <div className="relative h-full p-6 bg-white rounded-3xl">
@@ -65,4 +59,4 @@ const Readings = () => {
   );
 };
 
-export default Readings;
+export default FinishedBooks;
