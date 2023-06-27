@@ -12,6 +12,7 @@ import AddBooks from './pages/AddBooks';
 import Readings from './pages/Readings';
 import BookSentences from './pages/Readings/BookSentences';
 import FinishedBooks from './pages/Readings/FinishedBooks';
+import Profile from './pages/Profile';
 
 const PrivateRoute = ({ component: Component, isAuthenticated }) =>
   isAuthenticated ? <Component /> : <Account />;
@@ -62,6 +63,13 @@ const Router = () => {
             isAuthenticated={authenticated}
             component={BookSentences}
           />
+        }
+      />
+      <Route path="/*" element={<NotFound />} />
+      <Route
+        path="/profile"
+        element={
+          <PrivateRoute isAuthenticated={authenticated} component={Profile} />
         }
       />
       <Route path="/*" element={<NotFound />} />
