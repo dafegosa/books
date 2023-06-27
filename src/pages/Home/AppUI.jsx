@@ -44,11 +44,13 @@ const AppUI = () => {
         <Loading />
       ) : (
         <BookList>
-          {items?.map((book) => (
-            <ul key={book.id} className="py-2">
-              <BookListItem book={book}></BookListItem>
-            </ul>
-          ))}
+          {items
+            ?.filter((book) => book.read_at === null)
+            .map((book) => (
+              <ul key={book.id} className="py-2">
+                <BookListItem book={book}></BookListItem>
+              </ul>
+            ))}
         </BookList>
       )}
 

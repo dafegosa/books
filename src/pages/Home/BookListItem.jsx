@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import ButtonEditBook from '../../components/buttons/ButtonEditBook';
 import { actions } from '../../store/actions';
 import { GlobalContext } from '../../store/globalContext';
-import { deleteBook } from '../../store/apiCalls';
+import { deleteBook, markAsRead } from '../../store/apiCalls';
 
 const BookListItem = ({ book }) => {
   const { dispatch } = useContext(GlobalContext);
@@ -15,6 +15,7 @@ const BookListItem = ({ book }) => {
             Mark as read
           </span>
           <input
+            onClick={() => markAsRead(dispatch, book.id)}
             type="checkbox"
             className="sm:order-3 sm:bottom-2 w-4 h-4 ml-2"
           />

@@ -45,7 +45,6 @@ export const createBook = async (dispatch, values) => {
 };
 
 export const editBook = async (dispatch, values) => {
-  console.log('values', values);
   const bookId = Number(localStorage.getItem('bookIdToEdit'));
 
   const currentDate = new Date(); // Obtiene la fecha actual
@@ -53,7 +52,7 @@ export const editBook = async (dispatch, values) => {
 
   const options = {
     method: 'PUT',
-    url: `https://cautious-octo-fishstick.onrender.com/api/v1/books/:${bookId}`,
+    url: `https://cautious-octo-fishstick.onrender.com/api/v1/books/${bookId}`,
     headers: {
       Authorization: `${localStorage.getItem('token')}`,
       'Content-Type': 'application/json',
@@ -66,7 +65,7 @@ export const editBook = async (dispatch, values) => {
         author: values.author,
         gender: values.gender,
         observations: values.observations,
-        read_at: formattedDate,
+        read_at: '',
       },
     },
   };
@@ -149,22 +148,29 @@ export const decrement = (dispatch) => {
   dispatch({ type: 'DECREMENT' });
 };
 
-export const markAsRead = (dispatch, id) => {
-  dispatch({ type: 'MARK_AS_READ', payload: id });
-  try {
-    axios.put(
-      `https://cautious-octo-fishstick.onrender.com/api/v1/books/${id}`,
-      {
-        book: {
-          read: true,
-        },
+export const markAsRead = async (dispatch, id) => {
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString().split('T')[0];
+
+  const options = {
+    method: 'PATCH',
+    url: `https://cautious-octo-fishstick.onrender.com/api/v1/books/${id}`,
+    headers: {
+      Authorization: `${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    data: {
+      book: {
+        read_at: formattedDate,
       },
-      {
-        headers: {
-          Authorization: localStorage.getItem('token') || '',
-        },
-      }
-    );
+    },
+  };
+
+  try {
+    const { data } = await axios.request(options);
+    console.log(data);
+    await fetchBooks(dispatch);
   } catch (error) {
     console.error(error);
   }
