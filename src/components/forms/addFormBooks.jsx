@@ -1,12 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+
 import TextInput from '../inputFields/TextInput';
 import { createBook } from '../../store/apiCalls';
 import { GlobalContext } from '../../store/globalContext';
+import LoadingLogin from '../../pages/Loading/LoadingLogin';
 
 const AddFormBooks = () => {
   const { dispatch } = useContext(GlobalContext);
+  const [isLoading, setIsLoading] = useState(false);
+
+  if (isLoading) {
+    return <LoadingLogin />;
+  }
+
   return (
     <Formik
       initialValues={{
@@ -23,7 +31,14 @@ const AddFormBooks = () => {
         cost: Yup.number().required('Required'),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        createBook(dispatch, values);
+        setIsLoading(true);
+        try {
+          await createBook(dispatch, values);
+        } catch (error) {
+          alert('An error occurred adding book.');
+        } finally {
+          setIsLoading(false);
+        }
       }}
     >
       <Form className="mt-4 space-y-6">

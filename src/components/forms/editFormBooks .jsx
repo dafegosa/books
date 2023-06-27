@@ -1,15 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+
 import TextInput from '../inputFields/TextInput';
 import { GlobalContext } from '../../store/globalContext';
 import { editBook } from '../../store/apiCalls';
+import LoadingLogin from '../../pages/Loading/LoadingLogin';
 
 const EditFormBooks = () => {
   const { state, dispatch } = useContext(GlobalContext);
   const { books } = state;
   const bookToEdit = Number(localStorage.getItem('bookIdToEdit'));
   const toEdit = books.items.find((book) => book.id === bookToEdit);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  if (isLoading) {
+    return <LoadingLogin />;
+  }
   return (
     <Formik
       initialValues={{
@@ -27,7 +35,14 @@ const EditFormBooks = () => {
       })}
       onSubmit={async (values, { setSubmitting }) => {
         await new Promise((r) => setTimeout(r, 500));
-        editBook(dispatch, values);
+        setIsLoading(true);
+        try {
+          await editBook(dispatch, values);
+        } catch (error) {
+          alert('An error occurred editing book.');
+        } finally {
+          setIsLoading(false);
+        }
       }}
     >
       <Form className="mt-4 space-y-6">

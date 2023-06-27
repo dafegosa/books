@@ -40,6 +40,7 @@ export const createBook = async (dispatch, values) => {
     );
     await fetchBooks(dispatch);
     dispatch({ type: actions.TOGGLE_MODAL });
+    alert('Book added successfully.');
   } catch (error) {
     console.error('Error fetching books:', error);
   }
@@ -75,6 +76,7 @@ export const editBook = async (dispatch, values) => {
     const { data } = await axios.request(options);
     await fetchBooks(dispatch);
     dispatch({ type: actions.TOGGLE_MODAL });
+    alert('Book edited successfully.');
   } catch (error) {
     console.error(error);
   }
