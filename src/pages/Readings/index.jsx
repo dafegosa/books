@@ -24,22 +24,22 @@ const Readings = () => {
         </h1>
       </div>
 
-      <section class="py-20 bg-gray-100 sm:py-9">
-        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <section className="py-20 bg-gray-100 sm:py-9">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <ul
             role="list"
-            class="grid max-w-2xl grid-cols-1 gap-6 mx-auto sm:gap-8 lg:max-w-none lg:grid-cols-3"
+            className="grid max-w-2xl grid-cols-1 gap-6 mx-auto sm:gap-8 lg:max-w-none lg:grid-cols-3"
           >
             {items?.map((book) => (
               <li key={book.id}>
-                <div class="relative h-full p-6 bg-white rounded-3xl">
-                  <blockquote class="relative">
-                    <h3 class="text-base text-gray-500">{book.title}</h3>
+                <div className="relative h-full p-6 bg-white rounded-3xl">
+                  <blockquote className="relative">
+                    <h3 className="text-base text-gray-500">{book.title}</h3>
                   </blockquote>
-                  <div class="relative flex flex-col items-center justify-between pt-6 mt-6 border-t border-gray-100">
+                  <div className="relative flex flex-col items-center justify-between pt-6 mt-6 border-t border-gray-100">
                     <div>
-                      <div class="text-base text-black">{book.gender}</div>
-                      <div class="m-3 text-sm text-gray-500">
+                      <div className="text-base text-black">{book.gender}</div>
+                      <div className="m-3 text-sm text-gray-500">
                         <p>
                           {/* //todo: add description to book */}
                           {book.observations

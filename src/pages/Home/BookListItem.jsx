@@ -34,9 +34,14 @@ const BookListItem = ({ book }) => {
             page:
           </span>
           <span
-            onClick={() => alert('change page')}
+            onClick={() => {
+              dispatch({ type: actions.TOGGLE_MODAL });
+              dispatch({ type: actions.SET_MODAL_TYPE, payload: 'updatePage' });
+              localStorage.setItem('bookId', book.id);
+            }}
             className="text-xl ml-3 font-semibold text-gray-800 md:flex items-center hover:text-cyan-400 cursor-pointer"
           >
+            {/* {book.page} */}
             53
           </span>
         </div>

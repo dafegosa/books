@@ -14,6 +14,7 @@ import Loading from '../Loading';
 
 import { actions } from '../../store/actions';
 import { fetchBooks } from '../../store/apiCalls';
+import UpdateFormPage from '../../components/forms/updateFormPage';
 
 const AppUI = () => {
   const {
@@ -60,7 +61,9 @@ const AppUI = () => {
           <div className="flex flex-col items-center justify-center w-full h-full">
             <div className="flex w-full justify-around">
               <h3 className="text-3xl font-medium tracking-tight text-gray-600 md:text-4xl text-center">
-                {modalType === 'add' ? 'Add Books' : 'Edit Book'}
+                {modalType === 'add' ? 'Add Books' : ''}
+                {modalType === 'edit' ? 'Edit Book' : ''}
+                {modalType === 'Update Page' ? 'Update Page' : ''}
               </h3>
               <button
                 className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
@@ -84,7 +87,9 @@ const AppUI = () => {
                 </svg>
               </button>
             </div>
-            {modalType === 'add' ? <AddFormBooks /> : <EditFormBooks />}
+            {modalType === 'add' && <AddFormBooks />}
+            {modalType === 'edit' && <EditFormBooks />}
+            {modalType === 'updatePage' && <UpdateFormPage />}
           </div>
         </Modal>
       )}

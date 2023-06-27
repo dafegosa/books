@@ -9,5 +9,4 @@ export const actions = {
   AUTH: 'AUTH',
   SIGN_OUT: 'SIGN_OUT',
   MARK_AS_READ: 'MARK_AS_READ',
-  UPDATE_PAGE_NUMBER: 'UPDATE_PAGE_NUMBER',
 };
