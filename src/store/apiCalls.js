@@ -44,6 +44,42 @@ export const createBook = async (dispatch, values) => {
   }
 };
 
+export const editBook = async (dispatch, values) => {
+  console.log('values', values);
+  const bookId = Number(localStorage.getItem('bookIdToEdit'));
+
+  const currentDate = new Date(); // Obtiene la fecha actual
+  const formattedDate = currentDate.toISOString().split('T')[0];
+
+  const options = {
+    method: 'PUT',
+    url: `https://cautious-octo-fishstick.onrender.com/api/v1/books/:${bookId}`,
+    headers: {
+      Authorization: `${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    data: {
+      book: {
+        cost: values.cost,
+        title: values.title,
+        author: values.author,
+        gender: values.gender,
+        observations: values.observations,
+        read_at: formattedDate,
+      },
+    },
+  };
+
+  try {
+    const { data } = await axios.request(options);
+    await fetchBooks(dispatch);
+    dispatch({ type: actions.TOGGLE_MODAL });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const deleteBook = async (dispatch, id) => {
   try {
     await axios.delete(

@@ -52,6 +52,7 @@ const BookListItem = ({ book }) => {
           actions={() => {
             dispatch({ type: actions.TOGGLE_MODAL });
             dispatch({ type: actions.SET_MODAL_TYPE, payload: 'edit' });
+            localStorage.setItem('bookIdToEdit', book.id);
           }}
           variantStyles={
             'text-white bg-black hover:border-black hover:text-black focus-visible:outline-black border-black focus-visible:ring-black'
