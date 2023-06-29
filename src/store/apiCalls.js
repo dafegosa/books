@@ -178,27 +178,24 @@ export const markAsRead = async (dispatch, id) => {
   }
 };
 
-export const updatePageNumber = async (values) => {
-  console.log(values);
-  const bookId = localStorage.getItem('bookId');
-  console.log(bookId);
-
-  //TODO: remove localstorage
-  // try {
-  //   axios.put(
-  //     `https://cautious-octo-fishstick.onrender.com/api/v1/books/${bookId}`,
-  //     {
-  //       book: {
-  //         page_number: values.pageNumber,
-  //       },
-  //     },
-  //     {
-  //       headers: {
-  //         Authorization: localStorage.getItem('token') || '',
-  //       },
-  //     }
-  //   );
-  // } catch (error) {
-  //   console.error(error);
-  // }
+export const updatePageNumber = async (values, dispatch) => {
+  const bookId = Number(localStorage.getItem('bookId'));
+  try {
+    axios.put(
+      `https://cautious-octo-fishstick.onrender.com/api/v1/books/${bookId}`,
+      {
+        book: {
+          page: Number(values.pageNumber),
+        },
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem('token') || '',
+        },
+      }
+    );
+    await fetchBooks(dispatch);
+  } catch (error) {
+    console.error(error);
+  }
 };

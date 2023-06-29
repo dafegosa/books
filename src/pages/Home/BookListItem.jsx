@@ -42,8 +42,7 @@ const BookListItem = ({ book }) => {
             }}
             className="text-xl ml-3 font-semibold text-gray-800 md:flex items-center hover:text-cyan-400 cursor-pointer"
           >
-            {/* {book.page} */}
-            53
+            {book?.page || '0'}
           </span>
         </div>
       </div>

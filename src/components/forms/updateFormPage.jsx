@@ -2,8 +2,11 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import TextInput from '../inputFields/TextInput';
 import { updatePageNumber } from '../../store/apiCalls';
+import { GlobalContext } from '../../store/globalContext';
+import { useContext } from 'react';
 
 const UpdateFormPage = () => {
+  const { dispatch } = useContext(GlobalContext);
   return (
     <Formik
       initialValues={{
@@ -13,8 +16,7 @@ const UpdateFormPage = () => {
         pageNumber: Yup.string().required('Required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
-        alert(JSON.stringify(values, null, 2));
-        updatePageNumber(values);
+        updatePageNumber(values, dispatch);
       }}
     >
       <Form className="mt-4 space-y-6">
