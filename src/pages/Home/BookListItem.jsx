@@ -54,7 +54,7 @@ const BookListItem = ({ book }) => {
               dispatch({ type: actions.TOGGLE_MODAL });
               dispatch({
                 type: actions.SET_MODAL_TYPE,
-                payload: 'addSentences',
+                payload: 'addQuote',
               });
               localStorage.setItem('bookSentencesId', book.id);
             }}

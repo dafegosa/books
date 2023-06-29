@@ -15,8 +15,8 @@ import Loading from '../Loading';
 import { actions } from '../../store/actions';
 import { fetchBooks } from '../../store/apiCalls';
 import UpdateFormPage from '../../components/forms/updateFormPage';
-import EditFormBookSentences from '../../components/forms/editFormBookSentences';
-import AddFormBookSentences from '../../components/forms/addFormBookSentences';
+import AddFormBookQuote from '../../components/forms/addFormBookQuote';
+import EditFormBookQuote from '../../components/forms/editFormBookQuote';
 
 const AppUI = () => {
   const {
@@ -67,8 +67,8 @@ const AppUI = () => {
               <h3 className="text-3xl font-medium tracking-tight text-gray-600 md:text-4xl text-center">
                 {modalType === 'add' ? 'Add Books' : ''}
                 {modalType === 'edit' ? 'Edit Book' : ''}
-                {modalType === 'addSentences' ? 'Add Favorite Sentences' : ''}
-                {modalType === 'editSentences' ? 'Edit Favorite Sentences' : ''}
+                {modalType === 'addQuote' ? 'Add Quote' : ''}
+                {modalType === 'editQuote' ? 'Edit Quote' : ''}
                 {modalType === 'updatePage' ? 'Update Page' : ''}
               </h3>
               <button
@@ -95,8 +95,8 @@ const AppUI = () => {
             </div>
             {modalType === 'add' && <AddFormBooks />}
             {modalType === 'edit' && <EditFormBooks />}
-            {modalType === 'addSentences' && <AddFormBookSentences />}
-            {modalType === 'editSentences' && <EditFormBookSentences />}
+            {modalType === 'addQuote' && <AddFormBookQuote />}
+            {modalType === 'editQuote' && <EditFormBookQuote />}
             {modalType === 'updatePage' && <UpdateFormPage />}
           </div>
         </Modal>

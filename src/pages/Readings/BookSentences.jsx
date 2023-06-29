@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { GlobalContext } from '../../store/globalContext';
 import { actions } from '../../store/actions';
 import Modal from '../../components/modal/Modal';
-import EditFormBookSentences from '../../components/forms/editFormBookSentences';
+import EditFormBookQuote from '../../components/forms/editFormBookQuote';
 
 const BookSentences = () => {
   const { id } = useParams();
@@ -143,7 +143,7 @@ const BookSentences = () => {
                 </svg>
               </button>
             </div>
-            <EditFormBookSentences id_book={id} />
+            <EditFormBookQuote id_book={id} />
           </div>
         </Modal>
       )}

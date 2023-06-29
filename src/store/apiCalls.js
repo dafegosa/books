@@ -199,3 +199,24 @@ export const updatePageNumber = async (values, dispatch) => {
     console.error(error);
   }
 };
+
+export const addQuotesBook = async (values, dispatch) => {
+  console.log('values', values);
+  const options = {
+    method: 'POST',
+    url: `https://cautious-octo-fishstick.onrender.com/books/:book_id/quotes`,
+    headers: {
+      Authorization: `${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    data: { content: values.quote },
+  };
+
+  // try {
+  //   const { data } = await axios.request(options);
+  //   console.log(data);
+  // } catch (error) {
+  //   console.error(error);
+  // }
+};

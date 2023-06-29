@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import TextInput from '../inputFields/TextInput';
 
-const EditFormBookSentences = ({ id_book, id_sentence = 2 }) => {
+const EditFormBookQuote = ({ id_book, id_sentence = 2 }) => {
   // Todo: update books sentences update
   return (
     <Formik
@@ -76,4 +76,4 @@ const EditFormBookSentences = ({ id_book, id_sentence = 2 }) => {
   );
 };
 
-export default EditFormBookSentences;
+export default EditFormBookQuote;
