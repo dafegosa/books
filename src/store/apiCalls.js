@@ -207,7 +207,7 @@ export const addQuotesBook = async (dispatch, values) => {
 
   const options = {
     method: 'POST',
-    url: `https://cautious-octo-fishstick.onrender.com/books/${id_book}/quotes`,
+    url: `https://cautious-octo-fishstick.onrender.com/api/v1/books/${id_book}/quotes`,
     headers: {
       Authorization: `${localStorage.getItem('token')}`,
       'Content-Type': 'application/json',
