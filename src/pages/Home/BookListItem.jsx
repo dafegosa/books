@@ -49,7 +49,7 @@ const BookListItem = ({ book }) => {
       <div className="flex flex-col items-center lg:flex-row">
         <div className="w-44 flex justify-end py-1">
           <ButtonEditBook
-            text={'Sentences'}
+            text={'Quote'}
             actions={() => {
               dispatch({ type: actions.TOGGLE_MODAL });
               dispatch({

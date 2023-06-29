@@ -8,7 +8,8 @@ import LoadingLogin from '../../pages/Loading/LoadingLogin';
 
 const AddFormBookQuote = () => {
   const { dispatch } = useContext(GlobalContext);
-  const id_book = localStorage.getItem('bookSentencesId');
+  const id_book = Number(localStorage.getItem('bookSentencesId'));
+
   const [isLoading, setIsLoading] = useState(false);
 
   if (isLoading) {
@@ -22,10 +23,11 @@ const AddFormBookQuote = () => {
         quote: '',
       }}
       validationSchema={Yup.object({
-        id_book: Yup.string().required('Required'),
+        id_book: Yup.number().required('Required'),
         quote: Yup.string().required('Required'),
       })}
       onSubmit={async (values, { setSubmitting }) => {
+        console.log(values);
         setIsLoading(true);
         try {
           await addQuotesBook(dispatch, values);

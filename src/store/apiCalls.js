@@ -195,28 +195,32 @@ export const updatePageNumber = async (values, dispatch) => {
       }
     );
     await fetchBooks(dispatch);
+    dispatch({ type: actions.TOGGLE_MODAL });
+    alert('Page number updated successfully.');
   } catch (error) {
     console.error(error);
   }
 };
 
-export const addQuotesBook = async (values, dispatch) => {
-  console.log('values', values);
+export const addQuotesBook = async (dispatch, values) => {
+  const { id_book, quote } = values;
+
   const options = {
     method: 'POST',
-    url: `https://cautious-octo-fishstick.onrender.com/books/:book_id/quotes`,
+    url: `https://cautious-octo-fishstick.onrender.com/books/${id_book}/quotes`,
     headers: {
       Authorization: `${localStorage.getItem('token')}`,
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    data: { content: values.quote },
+    data: { content: quote },
   };
 
-  // try {
-  //   const { data } = await axios.request(options);
-  //   console.log(data);
-  // } catch (error) {
-  //   console.error(error);
-  // }
+  try {
+    const { data } = await axios.request(options);
+    await fetchBooks(dispatch);
+    alert('Quote added successfully.');
+  } catch (error) {
+    console.error(error);
+  }
 };
