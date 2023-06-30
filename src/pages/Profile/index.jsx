@@ -4,7 +4,7 @@ import { GlobalContext } from '../../store/globalContext';
 const Profile = () => {
   const {
     state: {
-      user: { info, authenticated },
+      user: { info },
     },
   } = useContext(GlobalContext);
   return (

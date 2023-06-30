@@ -49,9 +49,6 @@ export const createBook = async (dispatch, values) => {
 export const editBook = async (dispatch, values) => {
   const bookId = Number(localStorage.getItem('bookIdToEdit'));
 
-  const currentDate = new Date(); // Obtiene la fecha actual
-  const formattedDate = currentDate.toISOString().split('T')[0];
-
   const options = {
     method: 'PUT',
     url: `https://cautious-octo-fishstick.onrender.com/api/v1/books/${bookId}`,
@@ -73,7 +70,7 @@ export const editBook = async (dispatch, values) => {
   };
 
   try {
-    const { data } = await axios.request(options);
+    await axios.request(options);
     await fetchBooks(dispatch);
     dispatch({ type: actions.TOGGLE_MODAL });
     alert('Book edited successfully.');
@@ -171,7 +168,7 @@ export const markAsRead = async (dispatch, id) => {
   };
 
   try {
-    const { data } = await axios.request(options);
+    await axios.request(options);
     await fetchBooks(dispatch);
   } catch (error) {
     console.error(error);
@@ -217,7 +214,7 @@ export const addQuotesBook = async (dispatch, values) => {
   };
 
   try {
-    const { data } = await axios.request(options);
+    await axios.request(options);
     await fetchBooks(dispatch);
     alert('Quote added successfully.');
   } catch (error) {
