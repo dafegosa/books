@@ -1,6 +1,25 @@
 import axios from 'axios';
 import { actions } from './actions';
-
+import { toast, Slide } from 'react-toastify';
+const NOTIFY_TYPES = {
+  info: 'info',
+  success: 'success',
+  warning: 'warning',
+  error: 'error',
+  default: 'default',
+};
+const notify = (message, type) =>
+  toast[type](message, {
+    position: 'top-center',
+    transition: Slide,
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'dark',
+  });
 // BOOKS
 export const fetchBooks = async (dispatch) => {
   try {
@@ -15,6 +34,7 @@ export const fetchBooks = async (dispatch) => {
 
     dispatch({ type: actions.SET_BOOKS, payload: response.data });
   } catch (error) {
+    notify('Something were wrong :(', NOTIFY_TYPES.error);
     console.error('Error fetching books:', error);
   }
 };
@@ -39,9 +59,9 @@ export const createBook = async (dispatch, values) => {
       }
     );
     await fetchBooks(dispatch);
-    dispatch({ type: actions.TOGGLE_MODAL });
-    alert('Book added successfully.');
+    notify('Book added successfully', NOTIFY_TYPES.success);
   } catch (error) {
+    notify('Something were wrong :(', NOTIFY_TYPES.error);
     console.error('Error fetching books:', error);
   }
 };
@@ -73,8 +93,9 @@ export const editBook = async (dispatch, values) => {
     await axios.request(options);
     await fetchBooks(dispatch);
     dispatch({ type: actions.TOGGLE_MODAL });
-    alert('Book edited successfully.');
+    notify('Book edited successfully!', NOTIFY_TYPES.success);
   } catch (error) {
+    notify('Something were wrong :(', NOTIFY_TYPES.error);
     console.error(error);
   }
 };
@@ -91,6 +112,7 @@ export const deleteBook = async (dispatch, id) => {
     );
     await fetchBooks(dispatch);
   } catch (error) {
+    notify('Something were wrong :(', NOTIFY_TYPES.error);
     console.error('Error fetching books:', error);
   }
 };
@@ -112,6 +134,7 @@ export const signUp = async (values, dispatch) => {
     localStorage.setItem('token', response.headers.token);
     dispatch({ type: 'AUTH', payload: response?.data?.data?.user });
   } catch (error) {
+    notify('Something were wrong :(', NOTIFY_TYPES.error);
     console.error(error);
   }
 };
@@ -130,6 +153,7 @@ export const signIn = async (values, dispatch) => {
     localStorage.setItem('token', response.headers.token);
     dispatch({ type: 'AUTH', payload: response?.data?.data?.user });
   } catch (error) {
+    notify('Something were wrong :(', NOTIFY_TYPES.error);
     console.error(error);
   }
 };
@@ -171,6 +195,7 @@ export const markAsRead = async (dispatch, id) => {
     await axios.request(options);
     await fetchBooks(dispatch);
   } catch (error) {
+    notify('Something were wrong :(', NOTIFY_TYPES.error);
     console.error(error);
   }
 };
@@ -193,8 +218,9 @@ export const updatePageNumber = async (values, dispatch) => {
     );
     await fetchBooks(dispatch);
     dispatch({ type: actions.TOGGLE_MODAL });
-    alert('Page number updated successfully.');
+    notify('Page number updated successfully!', NOTIFY_TYPES.success);
   } catch (error) {
+    notify('Something were wrong :(', NOTIFY_TYPES.error);
     console.error(error);
   }
 };
@@ -216,8 +242,9 @@ export const addQuotesBook = async (dispatch, values) => {
   try {
     await axios.request(options);
     await fetchBooks(dispatch);
-    alert('Quote added successfully.');
+    notify('Quote added successfully!', NOTIFY_TYPES.success);
   } catch (error) {
+    notify('Something were wrong :(', NOTIFY_TYPES.error);
     console.error(error);
   }
 };
