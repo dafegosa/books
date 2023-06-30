@@ -1,64 +1,58 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import TextInput from '../inputFields/TextInput';
+import { GlobalContext } from '../../store/globalContext';
+import { editQuote } from '../../store/apiCalls';
+import LoadingLogin from '../../pages/Loading/LoadingLogin';
 
-const EditFormBookQuote = ({ id_book, id_sentence = 2 }) => {
-  // Todo: update books sentences update
+const EditFormBookQuote = ({ id_book }) => {
+  const { state, dispatch } = useContext(GlobalContext);
+  const { books } = state;
+
+  const book = books.items.find((book) => book.id === id_book);
+  console.log(book);
+  const id_quote = Number(localStorage.getItem('id_quote'));
+  const quote = book?.quotes.find((quote) => quote.id === id_quote);
+  console.log(quote);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  if (isLoading) {
+    return <LoadingLogin />;
+  }
+
   return (
     <Formik
       initialValues={{
         id_book: id_book,
-        id_sentence: id_sentence,
-        sentence: '',
-        page: '',
+        id_quote: id_quote,
+        content: quote?.content,
       }}
       validationSchema={Yup.object({
         id_book: Yup.string().required('Required'),
-        id_sentence: Yup.string().required('Required'),
-        sentences: Yup.string().required('Required'),
+        id_quote: Yup.string().required('Required'),
+        content: Yup.string().required('Required'),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         await new Promise((r) => setTimeout(r, 500));
-        alert(JSON.stringify(values, null, 2));
-        setSubmitting(false);
+        try {
+          await editQuote(dispatch, values);
+          setIsLoading(true);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setIsLoading(false);
+        }
       }}
     >
       <Form className="mt-4 space-y-6">
         <div className="col-span-full">
           <TextInput
-            label="id_book: "
-            name="id_book"
-            type="number"
-            value={id_book}
-            // className="hidden"
-          />
-        </div>
-        <div className="col-span-full">
-          <TextInput
-            label="id_Sentence: "
-            name="id_sentence"
-            type="number"
-            value={id_sentence}
-            // className="hidden"
-          />
-        </div>
-        <div className="col-span-full">
-          <TextInput
-            label="Sentence"
-            name="sentence"
+            label="Quote"
+            name="content"
             type="text"
             placeholder="Book title"
-            labelStyles="block mb-3 text-sm font-medium text-gray-600"
-            inputStyles="block w-full px-6 py-3 text-black bg-white border border-gray-200 appearance-none rounded-xl placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
-          />
-        </div>
-        <div className="col-span-full">
-          <TextInput
-            label="Page"
-            name="page"
-            type="number"
-            placeholder="Page sentence"
             labelStyles="block mb-3 text-sm font-medium text-gray-600"
             inputStyles="block w-full px-6 py-3 text-black bg-white border border-gray-200 appearance-none rounded-xl placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
           />

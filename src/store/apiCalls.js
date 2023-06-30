@@ -248,3 +248,48 @@ export const addQuotesBook = async (dispatch, values) => {
     console.error(error);
   }
 };
+
+export const editQuote = async (dispatch, values) => {
+  const { id_book, id_quote } = values;
+  const options = {
+    method: 'PUT',
+    url: `https://cautious-octo-fishstick.onrender.com/api/v1/books/${id_book}/quotes/${id_quote}`,
+    headers: {
+      Authorization: '',
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    data: { quote: { content: values.content } },
+  };
+
+  try {
+    await axios.request(options);
+    await fetchBooks(dispatch);
+    notify('Quote edited successfully!', NOTIFY_TYPES.success);
+    dispatch({ type: actions.TOGGLE_MODAL });
+  } catch (error) {
+    notify('Something were wrong :(', NOTIFY_TYPES.error);
+    console.error(error);
+  }
+};
+
+export const deleteQuote = async (dispatch, id_book, id_quote) => {
+  const options = {
+    method: 'DELETE',
+    url: `https://cautious-octo-fishstick.onrender.com/api/v1/books/${id_book}/quotes/${id_quote}`,
+    headers: {
+      Authorization: localStorage.getItem('token') || '',
+      Accept: 'application/json',
+    },
+  };
+
+  try {
+    const { data } = await axios.request(options);
+    notify('Quote deleted successfully!', NOTIFY_TYPES.success);
+    fetchBooks(dispatch);
+    console.log(data);
+  } catch (error) {
+    notify('Something were wrong :(', NOTIFY_TYPES.error);
+    console.error(error);
+  }
+};
