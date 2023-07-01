@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className="flex flex-row items-center justify-between lg:justify-start">
           <Link
             className="text-lg tracking-tight text-black uppercase focus:outline-none focus:ring lg:text-2xl"
-            to="/"
+            to={authenticated ? '/home' : '/'}
           >
             <span className="lg:text-lg uppercase focus:ring-0">
               <svg
@@ -122,7 +122,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive
                   ? 'underline px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600'
-                  : 'text-blue-500 px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600'
+                  : 'text-blue-500 px-2 py-2 text-sm lg:px-6 md:px-3 hover:text-blue-600'
               }
             >
               {route.text}
@@ -195,11 +195,21 @@ const routes = [
   },
   {
     id: 3,
+    to: '/readings',
+    text: 'Reading',
+  },
+  {
+    id: 4,
+    to: '/finished-books',
+    text: 'Books I’ve Read',
+  },
+  {
+    id: 5,
     to: '/about',
     text: 'About us',
   },
   {
-    id: 4,
+    id: 6,
     to: '/ai',
     text: 'What to read',
   },
@@ -211,11 +221,11 @@ routesProfile.push({
   to: '/profile',
   text: 'Profile',
 });
-routesProfile.push({
-  id: 2,
-  to: '/settings',
-  text: 'Settings',
-});
+// routesProfile.push({
+//   id: 2,
+//   to: '/settings',
+//   text: 'Settings',
+// });
 routesProfile.push({
   id: 3,
   to: '/',

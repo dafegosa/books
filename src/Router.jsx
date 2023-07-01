@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
 import Home from './pages/Home';
-import MyStates from './pages/testig-states';
 import About from './pages/About';
 import Landing from './pages/Landing';
 import Account from './pages/Account';
@@ -9,6 +9,11 @@ import NotFound from './pages/NotFound';
 import { GlobalContext } from './store/globalContext';
 import Loading from './pages/Loading';
 import Openai from './pages/AI';
+import AddBooks from './pages/AddBooks';
+import Readings from './pages/Readings';
+import BookSentences from './pages/Readings/BookSentences';
+import FinishedBooks from './pages/Readings/FinishedBooks';
+import Profile from './pages/Profile';
 
 const PrivateRoute = ({ component: Component, isAuthenticated }) =>
   isAuthenticated ? <Component /> : <Account />;
@@ -35,7 +40,38 @@ const Router = () => {
       <Route
         path="/add-books"
         element={
-          <PrivateRoute isAuthenticated={authenticated} component={MyStates} />
+          <PrivateRoute isAuthenticated={authenticated} component={AddBooks} />
+        }
+      />
+      <Route
+        path="/readings"
+        element={
+          <PrivateRoute isAuthenticated={authenticated} component={Readings} />
+        }
+      />
+      <Route
+        path="/finished-books"
+        element={
+          <PrivateRoute
+            isAuthenticated={authenticated}
+            component={FinishedBooks}
+          />
+        }
+      />
+      <Route
+        path="/readings/:id"
+        element={
+          <PrivateRoute
+            isAuthenticated={authenticated}
+            component={BookSentences}
+          />
+        }
+      />
+      <Route path="/*" element={<NotFound />} />
+      <Route
+        path="/profile"
+        element={
+          <PrivateRoute isAuthenticated={authenticated} component={Profile} />
         }
       />
       <Route path="/*" element={<NotFound />} />

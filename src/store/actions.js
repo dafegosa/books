@@ -8,4 +8,5 @@ export const actions = {
   SET_MODAL_TYPE: 'SET_MODAL_TYPE',
   AUTH: 'AUTH',
   SIGN_OUT: 'SIGN_OUT',
+  MARK_AS_READ: 'MARK_AS_READ',
 };
