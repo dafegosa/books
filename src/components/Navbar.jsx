@@ -182,22 +182,28 @@ const Navbar = () => {
   );
 };
 
-const routes = [];
-routes.push({
-  id: 1,
-  to: '/home',
-  text: 'Wishlist',
-});
-routes.push({
-  id: 2,
-  to: '/add-books',
-  text: 'Add Books',
-});
-routes.push({
-  id: 3,
-  to: '/about',
-  text: 'About us',
-});
+const routes = [
+  {
+    id: 1,
+    to: '/home',
+    text: 'Wishlist',
+  },
+  {
+    id: 2,
+    to: '/add-books',
+    text: 'Add Books',
+  },
+  {
+    id: 3,
+    to: '/about',
+    text: 'About us',
+  },
+  {
+    id: 4,
+    to: '/ai',
+    text: 'What to read',
+  },
+];
 
 const routesProfile = [];
 routesProfile.push({
