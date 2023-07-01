@@ -9,14 +9,25 @@ const Landing = () => {
         <div className="flex flex-col justify-center h-screen flex-1 px-8 py-8 md:px-12 lg:flex-none lg:px-24">
           <div className="w-full mx-auto lg:max-w-6xl">
             <div className="max-w-xl mx-auto text-center lg:p-10 lg:text-left">
-              <div>
+              <div className="overflow-y-auto">
                 <p className="text-2xl font-medium tracking-tight text-black sm:text-4xl">
                   Reading Wishlist
                 </p>
                 <p className="max-w-xl mt-4 text-base tracking-tight text-gray-600">
-                  Use this paragraph to share information about your company or
-                  products. Make it engaging and interesting, and showcase your
-                  brand's personality. Thanks for visiting our website!
+                  Discover a world and keep track of your reading journey with
+                  Wishlist app. Whether you're an avid reader or just starting
+                  your literary adventure, Wishlist offers you the perfect
+                  platform to explore, organize, and plan your reading list like
+                  never before.
+                </p>
+                <p className="max-w-xl mt-4 text-base tracking-tight text-gray-600">
+                  Embrace the convenience of Wishlist app and embark on a
+                  literary journey that opens up endless possibilities. Start
+                  exploring today and let Wishlist be your companion in the
+                  world of books.
+                </p>
+                <p className="max-w-xl mt-4 text-base tracking-tight text-gray-600">
+                  Thanks for visiting our website!
                 </p>
               </div>
               <div className="flex flex-col items-center justify-center max-w-lg gap-3 mx-auto mt-10 lg:flex-row lg:justify-start">
