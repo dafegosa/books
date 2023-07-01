@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { GlobalContext } from '../../store/globalContext';
 import { actions } from '../../store/actions';
