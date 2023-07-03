@@ -211,7 +211,7 @@ const routes = [
   {
     id: 6,
     to: '/ai',
-    text: 'What to read',
+    text: 'Recommend (AI)',
   },
 ];
 

@@ -13,6 +13,9 @@ const initialState = {
     authenticated: false,
     info: {},
   },
+  openai: {
+    response: null,
+  },
 };
 
 export const GlobalContext = createContext();

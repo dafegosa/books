@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { actions } from './actions';
 import { toast, Slide } from 'react-toastify';
+import { Configuration, OpenAIApi } from 'openai';
+import { generatePrompt } from '../utils/propmtGenerator';
 const NOTIFY_TYPES = {
   info: 'info',
   success: 'success',
@@ -288,6 +290,38 @@ export const deleteQuote = async (dispatch, id_book, id_quote) => {
     notify('Quote deleted successfully!', NOTIFY_TYPES.success);
     fetchBooks(dispatch);
     console.log(data);
+  } catch (error) {
+    notify('Something were wrong :(', NOTIFY_TYPES.error);
+    console.error(error);
+  }
+};
+
+// OPENAI
+
+const configuration = new Configuration({
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
+export const handleCallOpenai = async (dispatch, values) => {
+  const prompt = generatePrompt(values);
+
+  if (!prompt) {
+    notify('Please provide at least one preference', NOTIFY_TYPES.warning);
+    return;
+  }
+
+  try {
+    const response = await openai.createCompletion({
+      model: 'text-davinci-003',
+      prompt,
+      temperature: 0.6,
+      max_tokens: 200,
+    });
+    dispatch({
+      type: actions.SET_OPENAI_RESPONSE,
+      payload: response?.data?.choices[0]?.text,
+    });
   } catch (error) {
     notify('Something were wrong :(', NOTIFY_TYPES.error);
     console.error(error);

@@ -1,6 +1,10 @@
-const LoadingLogin = () => {
+const LoadingLogin = (noFullScreen) => {
   return (
-    <div className="w-full h-screen z-10 flex justify-center items-center">
+    <div
+      className={`${
+        !noFullScreen && 'w-full h-screen z-10'
+      } flex justify-center items-center`}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="animate-spin icon icon-tabler icon-tabler-book"
