@@ -27,7 +27,7 @@ export const generatePrompt = (values) => {
   }
 
   const promptParts = [
-    "Customer: Hi! I'm looking for a new book to read. Please recommend a book for me based on the following preferences: (Give me title and author. max_tokens: 200).",
+    "Hi! I'm looking for a new book to read. Please recommend a book for me based on the following preferences: (Give me title and author. max_tokens: 200).",
   ];
 
   if (favoriteAuthor) {
