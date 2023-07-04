@@ -18,7 +18,7 @@ const UserBooksPreferencesForm = () => {
         favoriteAuthor: '',
         preferredGenre: '',
         favoriteBook: '',
-        bookLength: null,
+        bookLength: 0,
       }}
       onSubmit={async (values, { setSubmitting }) => {
         setIsLoading(true);
