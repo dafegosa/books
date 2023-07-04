@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import UserBooksPreferencesForm from '../../components/forms/userBooksPreferencesForm';
 import { GlobalContext } from '../../store/globalContext';
 
