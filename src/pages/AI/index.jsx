@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import UserBooksPreferencesForm from '../../components/forms/userBooksPreferencesForm';
 import { GlobalContext } from '../../store/globalContext';
 
@@ -6,6 +6,7 @@ const Openai = () => {
   const {
     state: {
       openai: { response },
+      user: { authenticated },
     },
   } = useContext(GlobalContext);
 
@@ -14,7 +15,7 @@ const Openai = () => {
       <h2 className="text-4xl text-black text-center mt-14">
         Welcome to our Book Recommendation feature!
       </h2>
-      <div className="mx-80 mt-10 text-justify">
+      <div className="sm:flex flex-col mx-10 md:mx-80 mt-10 text-justify">
         <p className="mt-10 text-justify">
           <strong>Are you looking for your next great read?</strong> Our
           AI-powered book recommendation system is here to help you discover new
@@ -29,12 +30,21 @@ const Openai = () => {
         </p>
         <p className=" mt-5">Get ready to embark on a new reading adventure!</p>
       </div>
-      <div className="w-full max-w-md mx-auto md:mt-14">
-        <UserBooksPreferencesForm />
-        <p className="w-full mt-10 mb-80" href="#response">
-          {response && response}
-        </p>
-      </div>
+      {authenticated ? (
+        <div className="w-ful p-8 max-w-md mx-auto md:mt-14">
+          <UserBooksPreferencesForm />
+          <p className="w-full h-auto mt-10 mb-80" href="#response">
+            {response && response}
+          </p>
+        </div>
+      ) : (
+        <div className="w-ful p-8 max-w-md mx-auto md:mt-14">
+          <h2>
+            You want to probe our AI Book recomendation? Please login or create
+            account first.
+          </h2>
+        </div>
+      )}
     </>
   );
 };

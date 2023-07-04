@@ -221,13 +221,8 @@ routesProfile.push({
   to: '/profile',
   text: 'Profile',
 });
-// routesProfile.push({
-//   id: 2,
-//   to: '/settings',
-//   text: 'Settings',
-// });
 routesProfile.push({
-  id: 3,
+  id: 2,
   to: '/',
   text: 'Sign out',
   action: (dispatch) => () => signOut(dispatch),
