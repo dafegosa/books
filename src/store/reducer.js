@@ -52,6 +52,20 @@ export const reducer = (state, action) => {
           info: {},
         },
       };
+    case actions.SET_OPENAI_RESPONSE:
+      return {
+        ...state,
+        openai: {
+          response: action.payload,
+        },
+      };
+    case actions.CLEAN_OPENAI_RESPONSE:
+      return {
+        ...state,
+        openai: {
+          response: null,
+        },
+      };
     default:
       return state;
   }

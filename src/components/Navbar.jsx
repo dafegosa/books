@@ -182,32 +182,38 @@ const Navbar = () => {
   );
 };
 
-const routes = [];
-routes.push({
-  id: 1,
-  to: '/home',
-  text: 'Wishlist',
-});
-routes.push({
-  id: 2,
-  to: '/add-books',
-  text: 'Add Books',
-});
-routes.push({
-  id: 3,
-  to: '/readings',
-  text: 'Reading',
-});
-routes.push({
-  id: 4,
-  to: '/finished-books',
-  text: 'Books I’ve Read',
-});
-routes.push({
-  id: 5,
-  to: '/about',
-  text: 'About us',
-});
+const routes = [
+  {
+    id: 1,
+    to: '/home',
+    text: 'Wishlist',
+  },
+  {
+    id: 2,
+    to: '/add-books',
+    text: 'Add Books',
+  },
+  {
+    id: 3,
+    to: '/readings',
+    text: 'Reading',
+  },
+  {
+    id: 4,
+    to: '/finished-books',
+    text: 'Books I’ve Read',
+  },
+  {
+    id: 5,
+    to: '/about',
+    text: 'About us',
+  },
+  {
+    id: 6,
+    to: '/ai',
+    text: 'Recommend (AI)',
+  },
+];
 
 const routesProfile = [];
 routesProfile.push({
@@ -215,13 +221,8 @@ routesProfile.push({
   to: '/profile',
   text: 'Profile',
 });
-// routesProfile.push({
-//   id: 2,
-//   to: '/settings',
-//   text: 'Settings',
-// });
 routesProfile.push({
-  id: 3,
+  id: 2,
   to: '/',
   text: 'Sign out',
   action: (dispatch) => () => signOut(dispatch),

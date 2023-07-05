@@ -8,6 +8,7 @@ import Account from './pages/Account';
 import NotFound from './pages/NotFound';
 import { GlobalContext } from './store/globalContext';
 import Loading from './pages/Loading';
+import Openai from './pages/AI';
 import AddBooks from './pages/AddBooks';
 import Readings from './pages/Readings';
 import BookSentences from './pages/Readings/BookSentences';
@@ -27,6 +28,7 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/about" element={<About />} />
+      <Route path="/ai" element={<Openai />} />
       <Route path="/loading" element={<Loading />} />
       <Route path="account" element={authenticated ? <Home /> : <Account />} />
       <Route
