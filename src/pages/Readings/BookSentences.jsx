@@ -50,7 +50,7 @@ const BookSentences = () => {
                     <p className="text-base text-gray-500">{quote?.content}</p>
                   </blockquote>
                   <figcaption className="relative flex items-center justify-between pt-6 mt-6 border-t border-gray-100">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col mx-auto">
                       <div className="m-3 text-sm text-gray-500">
                         {book.title}
                       </div>
