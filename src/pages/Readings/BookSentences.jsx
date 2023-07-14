@@ -54,27 +54,29 @@ const BookSentences = () => {
                       <div className="m-3 text-sm text-gray-500">
                         {book.title}
                       </div>
-                      <button
-                        className="items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none lg:w-auto focus-visible:outline-black text-sm focus-visible:ring-black"
-                        onClick={() => {
-                          dispatch({
-                            type: actions.TOGGLE_MODAL,
-                          });
-                          localStorage.setItem('id_quote', quote.id);
-                        }}
-                      >
-                        Edit Quote
-                      </button>
-                      <ButtonEditBook
-                        text={'Delete quote'}
-                        actions={() => {
-                          deleteQuote(dispatch, book.id, quote.id);
-                          handleReload();
-                        }}
-                        variantStyles={
-                          'text-white bg-red-500 hover:border-red-600 hover:text-red-600 focus-visible:outline-red-600 border-red-600 focus-visible:ring-red-600'
-                        }
-                      />
+                      <div className="relative flex justify-end mr-2 py-1">
+                        <button
+                          className="items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none lg:w-auto focus-visible:outline-black text-sm focus-visible:ring-black"
+                          onClick={() => {
+                            dispatch({
+                              type: actions.TOGGLE_MODAL,
+                            });
+                            localStorage.setItem('id_quote', quote.id);
+                          }}
+                        >
+                          Edit Quote
+                        </button>
+                        <ButtonEditBook
+                          text={'Delete quote'}
+                          actions={() => {
+                            deleteQuote(dispatch, book.id, quote.id);
+                            handleReload();
+                          }}
+                          variantStyles={
+                            'text-white bg-red-500 hover:border-red-600 hover:text-red-600 focus-visible:outline-red-600 border-red-600 focus-visible:ring-red-600'
+                          }
+                        />
+                      </div>
                     </div>
                   </figcaption>
                 </figure>

@@ -1,12 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import TextInput from '../inputFields/TextInput';
 import { GlobalContext } from '../../store/globalContext';
 import { signUp } from '../../store/apiCalls';
+import LoadingLogin from '../../pages/Loading/LoadingLogin';
 
 const SignUpForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { dispatch } = useContext(GlobalContext);
+
+  if (isLoading) {
+    return <LoadingLogin />;
+  }
+
   return (
     <Formik
       initialValues={{
@@ -22,10 +29,16 @@ const SignUpForm = () => {
         password: Yup.string().required('Required'),
         passwordConfirm: Yup.string().required('Required'),
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        alert(JSON.stringify(values, null, 2));
-        signUp(values, dispatch);
-        setSubmitting(false);
+      onSubmit={async (values, { setSubmitting }) => {
+        setIsLoading(true);
+        try {
+          await signUp(values, dispatch);
+          setSubmitting(false);
+        } catch (error) {
+          alert('An error occurred during sign Up.');
+        } finally {
+          setIsLoading(false);
+        }
       }}
     >
       <Form className="mt-4 space-y-6">
